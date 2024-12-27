@@ -1,0 +1,22 @@
+Pricing series:
+1. Introducing a floor and cap price for transactional services
+2. Price elasticity of demand: optimising our Buyers protection fee
+
+Making Buyer protection mandatory
+- case, research and experiment
+
+Foundational stats:
+1. Poisson distribution, and modelling daily demand - how I optimised BP fee
+
+
+Variance reduction techniques (write one by one in depth, then a summary post)
+1. Basics: outliers, winsorisation
+2. Ranking outcome variable
+3. MLRATE
+4. 
+
+
+
+1. bayesian bootstrap
+2. networks and categories
+3. 

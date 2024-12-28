@@ -16,11 +16,11 @@ Here, I'll share how I go about turning complex questions into insights that eng
 There's a lot of good technical content out there. So, my self-set challenge is to add by exploring and sharing the *practical* hurdles and learnings that have emerged in *real* world applications on my end
 
 Finally, about what you all came for, I’ll also dive deep into the tools and frameworks I rely on. Here's a sample, and by no means exaustive:
-- Causal inference
-🎲 Bayesian modeling
-⚙️ Systems dynamics and simulations
-🔎 Hypothesis testing
-🧪 Advanced experimental designs
+🔄 Causal inference  
+🎲 Bayesian modeling  
+⚙️ Systems dynamics and simulations  
+🔎 Hypothesis testing  
+🧪 Advanced experimental designs  
 
 ... All applied to topics like pricing, user retention, online trust and survey analysis in online marketplaces.
 

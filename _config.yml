@@ -115,12 +115,12 @@ comments:
   # Giscus options › https://giscus.app
   giscus:
     repo: aalvarezperez/aalvarezperez.github.io  # <gh-username>/<repo>
-    repo_id: 908764587
-    category: "Posts"
-    category_id:
+    repo_id: "R_kgDONiqlqw"
+    category: "Announcements"
+    category_id: "DIC_kwDONiqlq84Clk-6"
     mapping: # optional, default to 'pathname'
     strict: # optional, default to '0'
-    input_position: # optional, default to 'bottom'
+    input_position: "top" # optional, default to 'bottom'
     lang: # optional, default to the value of `site.lang`
     reactions_enabled: # optional, default to the value of `1`
 

@@ -7,6 +7,9 @@
   icon: 'fab fa-linkedin'
   url:  'https://www.linkedin.com/in/alejandro-alvarez-p%C3%A9rez-a21912b0/'
 
+- type: medium
+  icon: "fas fa-medium"
+  
 - type: email
   icon: "fas fa-envelope"
   noblank: true # open link in current tab

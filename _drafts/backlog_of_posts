@@ -7,6 +7,8 @@ Making Buyer protection mandatory
 
 Foundational stats:
 1. Poisson distribution, and modelling daily demand - how I optimised BP fee
+2. When Poisson falls short: Negative binomial, and other alternatives
+3. Dirichlet distribution and it's use cases in modelling. Bayesian and what else?
 
 
 Variance reduction techniques (write one by one in depth, then a summary post)

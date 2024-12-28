@@ -4,7 +4,7 @@
   icon: "fab fa-github"
   
 - type: linkedin
-  icon: 'fa fa-linkedin'
+  icon: 'fab fa-linkedin'
   url:  'https://www.linkedin.com/in/alejandro-alvarez-p%C3%A9rez-a21912b0/'
 
 - type: medium

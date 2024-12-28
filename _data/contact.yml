@@ -4,19 +4,22 @@
   icon: "fab fa-github"
   
 - type: linkedin
-  icon: 'fab fa-linkedin'
+  icon: 'fa fa-linkedin'
   url:  'https://www.linkedin.com/in/alejandro-alvarez-p%C3%A9rez-a21912b0/'
 
 - type: medium
-  icon: "fas fa-medium"
-  
-- type: email
-  icon: "fas fa-envelope"
-  noblank: true # open link in current tab
+  icon: 'fab fa-medium'
+  url: 'https://medium.com/@alejandroalvarezprez'
 
 - type: rss
-  icon: "fas fa-rss"
+  icon: 'fas fa-rss'
   noblank: true
+  
+# - type: email
+#   icon: 'fas fa-envelope'
+#   noblank: true # open link in current tab
+
+
   
 # Uncomment and complete the url below to enable more contact options
 #

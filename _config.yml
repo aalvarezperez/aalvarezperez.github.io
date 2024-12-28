@@ -114,9 +114,9 @@ comments:
     issue_term: # < url | pathname | title | ...>
   # Giscus options › https://giscus.app
   giscus:
-    repo: # <gh-username>/<repo>
-    repo_id:
-    category:
+    repo: aalvarezperez/aalvarezperez.github.io  # <gh-username>/<repo>
+    repo_id: 908764587
+    category: "Posts"
     category_id:
     mapping: # optional, default to 'pathname'
     strict: # optional, default to '0'

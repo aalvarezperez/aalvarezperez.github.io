@@ -7,7 +7,7 @@ order: 4
 
 # Hi! I’m Alejandro 👋 
 
-### It’s great to have you here.  
+### It’s great to have you here 
 Welcome to this little project of mine, where I share technical know-how, organizational parkour stunts, and the tailwinds and bumps I’ve encountered on my journey to making a positive impact on the products I’ve worked on and the businesses I’ve been part of. You’ll find something valuable here if you’re deep into statistical modeling, obsessed with causal inference, or fascinated by how complex systems tick.
 
 ### My work  

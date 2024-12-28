@@ -7,7 +7,6 @@ order: 4
 # Backlog  
 
 Have a 👀 at what I plan to write about in the future.  
-In the comments sections at the bottom of the page you're welcome to propose, upvote or simply dive into the topics already.  
 This list is dynamic and will, of course, outgrow my article writing speed. Whoops.  
 
 Pricing series:

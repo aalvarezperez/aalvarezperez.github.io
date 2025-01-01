@@ -6,5 +6,7 @@ tags: [R, programming, stats]
 media_subpath: aalvarezperez.github.io/assets/images/BPA0001/
 ---
 
-this is a picture of !(probability mass function)[/assets/images/BPA0001/poisson_pmf.png]  
-_the caption comes here_
+this is a picture of ![probability mass function](/assets/images/BPA0001/poisson_pmf.png){: .right}  
+_the caption comes here_  
+
+Text continues here

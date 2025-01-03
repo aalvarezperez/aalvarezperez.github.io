@@ -6,6 +6,7 @@ categories: [Foundations, Distributions]
 tags: [poisson, stats, discrete, distribution]
 media_subpath: /assets/images/BPA0001/
 toc: true
+draft: true
 layout: post
 image:
   path: poisson_pmf.png

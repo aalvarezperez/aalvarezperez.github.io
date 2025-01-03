@@ -1,9 +1,11 @@
 ---
+slug: "Mastering-the-Poisson-Distribution-Intuition-and-Foundations"
 title: "Mastering the Poisson Distribution: Intuition and Foundations"
 date: 2024-12-28 18:45:00 +0100
 categories: [Foundations, Distributions]
 tags: [poisson, stats, discrete, distribution]
 media_subpath: /assets/images/BPA0001/
+toc: true
 image:
   path: poisson_pmf.png
 ---

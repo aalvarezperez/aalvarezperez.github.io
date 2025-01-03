@@ -75,9 +75,7 @@ Before we can cross-check our intuition with the numerical behaviour of λ ^ k, 
 
 Since λ ^ k is an exponential term, the output will always be larger as k grows, and lambda is kept constant - that’s the opposite of our intuition. But now that we know about the interchangeable events assumption, and the overcounting issue, we know that we have to factor in k! like so: λ ^ k / k! to see the behaviour we expect.
 
-Now let’s check the intuition of the relationship between λ and k through λ ^ k, corrected for k! For the same λ, say λ = 4, we should see λ ^ k / k! to be smaller for values of k that are far removed from 4, compared to values of k that lie close to 4. Like so: inline code: 4^2 = 16 is smaller than 4 ^ 4 = 256. This is consistent with the intuition of a higher likelihood of k when it’s near the mean of the distribution.
+Now let’s check the intuition of the relationship between λ and k through λ ^ k, corrected for k! For the same λ, say λ = 4, we should see λ ^ k / k! to be smaller for values of k that are far removed from 4, compared to values of k that lie close to 4. Like so: inline code: 4^2 = 16 is smaller than 4 ^ 4 = 256. This is consistent with the intuition of a higher likelihood of k when it’s near the mean of the distribution. The image below shows this relationship more generally, where you see that moving k closer to λ makes the output larger.  
 
-The image below shows this relationship more generally, where you see that moving k closer to λ makes the output larger. The term is already divided by the correction term k! to aid visualisation, the same reason we are using the log (the log is not part of the actual equation ref to the equation like so (1) in markdown)
-
-[λ ^ k](lambda_to_k_light.png){.light}
+[λ ^ k](lambda_to_k_light.png){.light}  
 [λ ^ k](lambda_to_k_dark.png){.dark}

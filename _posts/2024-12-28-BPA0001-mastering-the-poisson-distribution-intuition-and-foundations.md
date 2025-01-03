@@ -55,13 +55,20 @@ P(X = k) = \frac{\lambda^k e^{-\lambda}}{k!}
 \end{equation}
 $$  
 
-Where λ is the rate parameter, and k is the manifested value of the random variable (0, 1, 2, 3, …, k events). Very neat and compact.
+Where λ is the rate parameter, and k is the manifested value of the random variable (0, 1, 2, 3, …, k events). Very neat and compact.  
+
+![pmf](poisson_pmf_in_text_light.png){: .light }
+![pmf](poisson_pmf_in_text_dark.png){: .dark }
+_The probability mass function of the Poisson distribution._  
+
 
 ### Contextualising λ and k: the marketplace example  
 In the context of our earlier example —  a seller listing items on our platform — λ represents the seller’s average monthly listings. As the expected monthly value for this seller, λ orchestrates the number of items he would list in a month. Note that λ is a greek letter, so read: λ is a parameter that we can estimate from data. On the other hand, $$ k $$ does not hold any information about the seller’s idiosyncratic behaviour. It’s the target value we set for the number of events that may happen to learn about its probability. 
 
 ### The dual role of λ as the mean and variance  
 When I said that λ orchestrates the number of monthly listings for the seller, I meant it quite literally. Namely, λ is both the expected value and variance of the distribution indifferently for all values of λ. Meaning that the ratio mean-to-variance (variation index) is always 1. To add perspective, the normal distribution requires two parameters, mu and sigma, the average and variance respectively, to describe the distribution. The Poisson distribution does it with just one. Having to estimate only one parameter can be beneficial for inference work. Specifically, by reducing variance, and so reducing the error of your fitted values, or predictions. On the other hand, it can be too limiting of an assumption. Alternatives like the Negative Binomial distribution can alleviate this limitation. We’ll explore that later.  
+
+### Breaking down the probability mass function  
 
 Now that we know the smallest building blocks, let’s zoom out one step: what is $$ \lambda^k $$ , $$ e^{-\lambda} $$ , and k!, and more importantly, what is each of these component’s function in the whole?
 

@@ -77,5 +77,5 @@ Since λ ^ k is an exponential term, the output will always be larger as k grows
 
 Now let’s check the intuition of the relationship between λ and k through λ ^ k, corrected for k! For the same λ, say λ = 4, we should see λ ^ k / k! to be smaller for values of k that are far removed from 4, compared to values of k that lie close to 4. Like so: inline code: 4^2 = 16 is smaller than 4 ^ 4 = 256. This is consistent with the intuition of a higher likelihood of k when it’s near the mean of the distribution. The image below shows this relationship more generally, where you see that moving k closer to λ makes the output larger.  
 
-[λ ^ k](lambda_to_k_light.png){: .light}  
-[λ ^ k](lambda_to_k_dark.png){: .dark}
+![λ ^ k](lambda_to_k_light.png){: .light}  
+![λ ^ k](lambda_to_k_dark.png){: .dark}

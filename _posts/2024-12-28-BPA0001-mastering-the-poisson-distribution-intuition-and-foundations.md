@@ -57,8 +57,8 @@ $$
 
 Where λ is the rate parameter, and k is the manifested value of the random variable (0, 1, 2, 3, …, k events). Very neat and compact.  
 
-![pmf](poisson_pmf_in_text_light.png){: .light }
-![pmf](poisson_pmf_in_text_dark.png){: .dark }
+![pmf](poisson_pmf_main_text_light.png){: .light }
+![pmf](poisson_pmf_main_text_dark.png){: .dark }
 _The probability mass function of the Poisson distribution._  
 
 

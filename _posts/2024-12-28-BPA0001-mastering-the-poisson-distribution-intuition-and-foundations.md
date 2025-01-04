@@ -10,7 +10,9 @@ math: true
 draft: true
 layout: post
 image:
-  path: poisson_pmf.png
+  alt: Pinar del Rio
+  light: poisson_pmf_light.png
+  dark: poisson_pmf_dark.png
 ---
 
 

@@ -98,22 +98,28 @@ The distribution simply describes probabilities for various number of counts in 
 2. **The average rate at which events occur is independent of any occurrence.** Similarly to (1), no event in the past, nor future, has any effect on the levels on λ — it’s constant during the observed timeframe. The parallel to our example is that no past listing of an item encourages or discourages the seller to be more or less active at some deep idiosyncratic level.
 3. **Two events cannot occur at exactly the same instant.** If we were to zoom at an infinite granular level on the timescale, no two listings could have been placed simultaneously. Two events always follow each one another. In our example, that means the seller has to go through the process of listing an item iteratively.
 
-Constant rate
-Implications of the above to our marketplace example is that the seller must have no preference on which day of the week, or week of the month, to list. For instance, listing on a Monday, or a Saturday is equally likely to happen. 
+### The marketplace exmple: implications  
 
-Independence and memorylessness
-I think of a scenario where listing an item *does* affect the probability of listing another item in the future (assumption 1): having no items left to list, after listing the first one. In that case, leaning on this assumption would result in too few events in the set timeframe, compared to what was expected. This may apply especially to professional sellers who may have a ‘stock’ of some item their business revolves around. Private sellers may just list item as it comes to their mind to give their used goods a second life.  
+**Constant λ**  
+_Why it may fail:_ Seller's patterned online activity; holidays; promotions; listings are seasonal goods or services.  
+_Consequence:_ λ is not constant, leading to overdispersion or strong temporal patterns.  
 
-The second assumption can be challenged too. What if the seller would go on holidays? Nothing about the past event triggered that act. But his own decision surely changed the rate at which he lists items. Or what if the nature of the primary good being sold is seasonal for a given small business? The constant λ assumptions would no longer hold. 
+**Independence and memorylessness**   
+_Why it may fail:_ propensity to list again is higher after successful first listing, or one listing depletes stock and intervenes with propensity of listing again.  
+_Consequence:_ Two events are no longer independent, as the occurance of one informs the other.  
 
-No Simultaneous Events
-Finally, what if there is a batch-listing mode on the platform to make seller’s life a bit easier. Then, the third assumption would be challenged. Listings could arrive simultaneously on the platform.
+**Simultaneous events**  
+_Why it may fail:_ Batch-listing was introduced to help the sellers.  
+_Consequence:_ Multiple listings would be online at the same time, and counted simultaneously.  
 
-As Data Scientists on the job we may feel trapped between rigour and pragmatism, when the Poisson distribution falls short. I suggest assessing the risks, or costs, of violating these assumptions, and the gains of alleviating them:
-1. Start by pinpointing your goal for the exercise. It could be inference, simulation, prediction, to mention few — not everything requires the same rigour
-2. Then, try to identify what about your data generating process behaves out-of-the-assumed for the distribution, and finally;
-3. Decide if your workaround would improve, or make thing worse, and at what cost (interpretability, new assumptions introduced and resources)
+### Balancing rigour and pragmatism  
 
+As Data Scientists on the job we may feel trapped between rigour and pragmatism, when the Poisson distribution falls short. I suggest these three things to know when to err on rigour, or pragmatism. 
+1. **Pinpoint your goal:** it is inference, simulation or prediction, and is it about high-stakes output? List the worst thing that can happen  
+2. **Identify problem and solution**: why doesn't Poisson fit, and what can you do about it? list 2-3 solutions  
+3. **Balance gains and costs:** Will your workaround improve things, or make it worse? and at what cost: interpretability, new assumptions introduced and resources used
+
+The above should give you a sound foundation on which you can build your argument and decision.  
 That said, here are some counters I use when needed.  
 
 ## When real life deviates  

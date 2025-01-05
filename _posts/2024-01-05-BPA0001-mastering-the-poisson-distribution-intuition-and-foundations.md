@@ -8,8 +8,8 @@ media_subpath: /assets/images/BPA0001/
 toc: true
 math: true
 image:
-  path: poisson_pmf_light.png
-  alt: Pinar del Rio
+  light: poisson_pmf_light.png
+  dark: poisson_pmf_dark.png
 ---
 
 

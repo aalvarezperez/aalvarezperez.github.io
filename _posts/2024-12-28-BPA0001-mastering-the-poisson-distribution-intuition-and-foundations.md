@@ -12,7 +12,6 @@ layout: post
 image:
   path: poisson_pmf.pnga
   alt: Pinar del Rio
----
 
 
 

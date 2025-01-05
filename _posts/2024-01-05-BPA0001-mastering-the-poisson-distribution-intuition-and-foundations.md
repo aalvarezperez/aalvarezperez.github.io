@@ -8,8 +8,7 @@ media_subpath: /assets/images/BPA0001/
 toc: true
 math: true
 image:
-  light: poisson_pmf_light.png
-  dark: poisson_pmf_dark.png
+  path: poisson_pmf_light.png
 ---
 
 

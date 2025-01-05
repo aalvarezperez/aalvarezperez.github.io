@@ -23,7 +23,7 @@ _If you know of a resource that has helped you grasp the concepts in this blog p
 1. **Examples and use cases:** Let’s walk through some use cases and sharpen the intuition I just mentioned. Along the way, the relevance of the Poisson distribution will become clear.
 2. **The foundation:** Next, let’s break down the equation into its individual components — the probability mass function, to be precise. By studying each part, we’ll uncover why the distribution works the way it does.
 3. **The assumptions:** Equipped with some formality, it will be easier to understand the assumptions that power the distribution, and at the same time set the boundaries for when it works, and when not.
-4. **When Poison falls short:** Finally, let’s explore the special links that the Poisson distribution has with the Binomial and Negative Binomial distributions. Understanding these relationships can deepen our understanding, and provide alternatives when the Poisson distribution is not suited for the job.
+4. **When real life deviates:** Finally, let’s explore the special links that the Poisson distribution has with the Binomial and Negative Binomial distributions. Understanding these relationships can deepen our understanding, and provide alternatives when the Poisson distribution is not suited for the job.
 
 ## Example in an online marketplace  
 
@@ -82,4 +82,40 @@ Since $$ \lambda^k $$ is an exponential term, the output will always be larger a
 Now let’s check the intuition of the relationship between λ and k through $$ \lambda^k $$ , corrected for $$ k! $$ For the same λ, say λ = 4, we should see $$ \frac{\lambda^k e^{-\lambda}}{k!} $$ to be smaller for values of k that are far removed from 4, compared to values of k that lie close to 4. Like so: inline code: 4^2 = 16 is smaller than 4 ^ 4 = 256. This is consistent with the intuition of a higher likelihood of k when it’s near the mean of the distribution. The image below shows this relationship more generally, where you see that moving k closer to λ makes the output larger.  
 
 ![λ ^ k](lambda_to_k_light.png){: .light}  
-![λ ^ k](lambda_to_k_dark.png){: .dark}
+![λ ^ k](lambda_to_k_dark.png){: .dark}  
+
+## The Assumptions  
+First, let’s clarify an often confused thing: a *Poisson process*, versus the *Poisson distribution*. The process is a stochastic continuous-time model of points happening in given interval: 1D — a line; 2D —  an area, or higher dimensions. We, data scientists, most often deal with the one-dimensional case, where the “line” is time, and the points are the events of interest. The Poisson process has two key properties - note that these are not the same as *assumptions*:  
+
+1. The points follow a Poisson distribution, orchestrated by the PMF we discussed before
+2. At any given interval of the line, the occurrence of events is independent of what happens in other disjoint, non-overlapping, interval, i.e., chunks of time  
+  
+The distribution simply describes probabilities for various number of counts in an interval. Strictly speaking, one can use the distribution pragmatically whenever the data is nonnegative, can be unbounded on the right, has mean λ, and it reasonably models the data. It would be just convenient if the underlying process is a Poisson one, and actually justifies using the distribution.  
+
+*So, can we justify using the Poisson distribution for our marketplace example? Let’s open up the assumptions of a *Poisson process*, and take the test.*  
+
+1. **The occurrence of one event does not affect the probability of a second event.** Think of our seller going on to list another item tomorrow indifferent of having done so already toady, or the one from five days ago for that matter. The point here is that there is no memory between events. Nothing links them directly. Semi-formally, \P(event today) is equal to \P(event today | event before today). The only factor determining the probability of listing an item at a given period in time, is λ, the listing-rate parameter of the seller. 
+2. **The average rate at which events occur is independent of any occurrence.** Similarly to (1), no event in the past, nor future, has any effect on the levels on λ — it’s constant during the observed timeframe. The parallel to our example is that no past listing of an item encourages or discourages the seller to be more or less active at some deep idiosyncratic level.
+3. **Two events cannot occur at exactly the same instant.** If we were to zoom at an infinite granular level on the timescale, no two listings could have been placed simultaneously. Two events always follow each one another. In our example, that means the seller has to go through the process of listing an item iteratively.
+
+Constant rate
+Implications of the above to our marketplace example is that the seller must have no preference on which day of the week, or week of the month, to list. For instance, listing on a Monday, or a Saturday is equally likely to happen. 
+
+Independence and memorylessness
+I think of a scenario where listing an item *does* affect the probability of listing another item in the future (assumption 1): having no items left to list, after listing the first one. In that case, leaning on this assumption would result in too few events in the set timeframe, compared to what was expected. This may apply especially to professional sellers who may have a ‘stock’ of some item their business revolves around. Private sellers may just list item as it comes to their mind to give their used goods a second life.  
+
+The second assumption can be challenged too. What if the seller would go on holidays? Nothing about the past event triggered that act. But his own decision surely changed the rate at which he lists items. Or what if the nature of the primary good being sold is seasonal for a given small business? The constant λ assumptions would no longer hold. 
+
+No Simultaneous Events
+Finally, what if there is a batch-listing mode on the platform to make seller’s life a bit easier. Then, the third assumption would be challenged. Listings could arrive simultaneously on the platform.
+
+As Data Scientists on the job we may feel trapped between rigour and pragmatism, when the Poisson distribution falls short. I suggest assessing the risks, or costs, of violating these assumptions, and the gains of alleviating them:
+1. Start by pinpointing your goal for the exercise. It could be inference, simulation, prediction, to mention few — not everything requires the same rigour
+2. Then, try to identify what about your data generating process behaves out-of-the-assumed for the distribution, and finally;
+3. Decide if your workaround would improve, or make thing worse, and at what cost (interpretability, new assumptions introduced and resources)
+
+That said, here are some counters I use when needed.  
+
+## When real life deviates  
+Everything described so far pertains to the standard, or homogenous, Poisson process. The inhomogenous counterparts arise when reality begs for it. What is λ is not constant over time?
+

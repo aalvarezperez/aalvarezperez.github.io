@@ -128,9 +128,10 @@ Of course, you rethink the entire approach, and switch to an different distribut
 
 Varying lambda can happen in two ways:  
 1. **As a function of time:** 
-2. **As a function of sub-processes:** best way I can explain this one is by thinking of multiple sellers listing items, each with their own λ.
+2. **As a function of sub-processes:** think of multiple sellers listing items, each with their own λ
 
-The former case extends the PMF so that for each time t, lambda can have it's own value. Let's call this one PMF*  
+### Time-varying λ  
+The former case extends the PMF so that for each time $$t$$, λ can have it's own value. Let's call this one PMF*  
 
 $$
 \begin{equation}  
@@ -146,21 +147,17 @@ $$
 \end{equation}
 $$  
 
-More intuitively, integrating over a given time-frame $$t$$ to $$t + i$$, gives us a single number: the expected value of events over that interval. That output of the integral will vary by time interval, and that's what makes lambda change over time. To understand how that intregration part works, it was helpful for me to think of it like this: if the inverval $$t$$ to $$t_1$$ has a mean of 3, and $$t_1$$ to $$t_2$$ has a mean of 5, then the interval $$t$$ to $$t_2$$ has a mean of $$8 = 3 + 5$$. That's that's the two expectations (= means) summed together.  
+More intuitively, integrating over a given time interval $$t$$ to $$t + i$$, gives us a single number: the expected value of events over that interval. The integral will vary by each arbitrary interval, and that's what makes lambda change over time. To understand how that intregration part works, it was helpful for me to think of it like this: if the inverval $$t$$ to $$t_1$$ has a mean of 3, and $$t_1$$ to $$t_2$$ has a mean of 5, then the interval $$t$$ to $$t_2$$ has a mean of $$8 = 3 + 5$$. That's that's the two expectations (= means) summed together, and now the expectation over the entire interval.  
 
-_Practical implication_  
+**Practical implication** 
 If this is the case in your work, you may consider modeling the expected value of the Poisson distribution as a function of time, among the other covariates. This will relax the assumption greatly, and still enable you to reap off the simplicity of the Poisson distribution.  
 
+### Process-varying λ: Mixed Poisson distribution  
 But then there is a gotcha. Remember when we said that λ has a dual role as the mean and variance? That still applies here. Looking at the "relaxed": PMF*, the only thing that changes is that λ can vary freely with time. But it's still the same λ that orchestrates both the expected value and the dispersion of the PMF*, specifically: $$\mathbb{E}[X] = \mathrm{Var}(X)$$  
 
-There are various reasons for this not to hold in reality. Model misspecification, 
+There are various reasons for this constraint not to hold in reality. Model misspecification, event interdependence and unacounted for heterogeneity could be the issues at hand. I'd like to focus on the latter case, to introduce you to touch on the negative binomial distribution.  
 
-
-
-
-4. **Time-varying λ**  
-
-**λ varying over a population and overdispersion**
+Imagine we have not one seller, but 10 of them and they list at a different intensity level. Then, essentially we have 10 Poisson processes going on, each orchestrated by their own $$λ_i$$, where i is the seller subscript, seller 1 to 10. If we plan to model the average $$\frac{1}{N} \sum_{i=1}^{N} \lambda_i$$ of those 10 sellers, then we simplify the mixture away, and surely can get to the expected value of all the sellers listing together, but the resulting λ is naive and does not know about the original spread of $$\lambda_i$$, and this will cause under or over dispersion. That means, the variance is no longer equal to the mean. Practically, unarming us from estimating error adequately!  
 
 
 

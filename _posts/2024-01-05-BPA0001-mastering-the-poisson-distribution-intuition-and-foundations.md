@@ -33,7 +33,7 @@ These binary choices aggregate to counts —  the sum of many such decision as t
 
 Consider a seller on a platform. On a given month, the seller may or may not list an item for sale — a binary choice. We would only know if they did, cause then we have a measured count of the event. Nothing stops him from listing another item in the same month. If he does, we count up those events. The total could be zero for an inactive seller or, say, 120 for a very engaged seller.  
 
-Over several months, we would observe a varying number of listed items by this seller — sometimes less, sometimes more —  hovering around an average monthly listing rate. That’s essentially a Poisson process.  
+Over several months, we would observe a varying number of listed items by this seller — sometimes less, sometimes more —  hovering around an average monthly listing average. That’s essentially a Poisson process.  
 
 *When we get to the assumptions section, you’ll see what we had to assume away to make this example work.*  
 
@@ -63,7 +63,7 @@ _The probability mass function of the Poisson distribution._
 In the context of our earlier example —  a seller listing items on our platform — λ represents the seller’s average monthly listings. As the expected monthly value for this seller, λ orchestrates the number of items he would list in a month. Note that λ is a greek letter, so read: λ is a parameter that we can estimate from data. On the other hand, $$ k $$ does not hold any information about the seller’s idiosyncratic behaviour. It’s the target value we set for the number of events that may happen to learn about its probability. 
 
 ### The dual role of λ as the mean and variance  
-When I said that λ orchestrates the number of monthly listings for the seller, I meant it quite literally. Namely, λ is both the expected value and variance of the distribution indifferently for all values of λ. Meaning that the ratio mean-to-variance (variation index) is always 1. To add perspective, the normal distribution requires two parameters, mu and sigma, the average and variance respectively, to describe the distribution. The Poisson distribution does it with just one. Having to estimate only one parameter can be beneficial for inference work. Specifically, by reducing variance, and so reducing the error of your fitted values, or predictions. On the other hand, it can be too limiting of an assumption. Alternatives like the Negative Binomial distribution can alleviate this limitation. We’ll explore that later.  
+When I said that λ orchestrates the number of monthly listings for the seller, I meant it quite literally. Namely, λ is both the expected value and variance of the distribution indifferently for all values of λ. Meaning that the ratio mean-to-variance (index of dispersion) is always 1. To add perspective, the normal distribution requires two parameters, mu and sigma, the average and variance respectively, to describe the distribution. The Poisson distribution does it with just one. Having to estimate only one parameter can be beneficial for inference work. Specifically, by reducing variance, and so reducing the error of your fitted values, or predictions. On the other hand, it can be too limiting of an assumption. Alternatives like the Negative Binomial distribution can alleviate this limitation. We’ll explore that later.  
 
 ### Breaking down the probability mass function  
 
@@ -102,7 +102,7 @@ The distribution simply describes probabilities for various number of counts in 
 
 **Constant λ**  
 _Why it may fail:_ Seller's patterned online activity; holidays; promotions; listings are seasonal goods or services.  
-_Consequence:_ λ is not constant, leading to overdispersion or strong temporal patterns.  
+_Consequence:_ λ is not constant, leading to overdispersion (variance-to-mean-ratio is larger than 1) or strong temporal patterns.  
 
 **Independence and memorylessness**   
 _Why it may fail:_ propensity to list again is higher after successful first listing, or one listing depletes stock and intervenes with propensity of listing again.  
@@ -113,7 +113,6 @@ _Why it may fail:_ Batch-listing was introduced to help the sellers.
 _Consequence:_ Multiple listings would be online at the same time, and counted simultaneously.  
 
 ### Balancing rigour and pragmatism  
-
 As Data Scientists on the job we may feel trapped between rigour and pragmatism, when the Poisson distribution falls short. I suggest these three things to know when to err on rigour, or pragmatism. 
 1. **Pinpoint your goal:** it is inference, simulation or prediction, and is it about high-stakes output? List the worst thing that can happen  
 2. **Identify problem and solution**: why doesn't Poisson fit, and what can you do about it? list 2-3 solutions  
@@ -122,6 +121,50 @@ As Data Scientists on the job we may feel trapped between rigour and pragmatism,
 The above should give you a sound foundation on which you can build your argument and decision.  
 That said, here are some counters I use when needed.  
 
-## When real life deviates  
-Everything described so far pertains to the standard, or homogenous, Poisson process. The inhomogenous counterparts arise when reality begs for it. What is λ is not constant over time?
+## When real life deviates from your model  
+Everything described so far pertains to the standard, or homogenous, Poisson process. But what if reality begs for something different?  
+Of course, you rethink the entire approach, and switch to an different distribution. But in the next section we'll cover two generalisations of the Poisson distribution when the constant λ assumption does not hold.  
+
+
+Varying lambda can happen in two ways:  
+1. **As a function of time:** 
+2. **As a function of sub-processes:** best way I can explain this one is by thinking of multiple sellers listing items, each with their own λ.
+
+The former case extends the PMF so that for each time t, lambda can have it's own value. Let's call this one PMF*  
+
+$$
+\begin{equation}  
+P\bigl(K(A) = k\bigr) = \frac{\bigl(\Lambda(T)\bigr)^k \ e^{-\Lambda(T)}}{k!}
+\end{equation}
+$$  
+
+Where the number of events K(T) in a measurable interval T, follows the Poisson distribution with a rate no longer equal to a fixed λ, but one equal to  
+
+$$
+\begin{equation}  
+\Lambda(T) = \int_{T} \lambda(t) \mathrm{d}t
+\end{equation}
+$$  
+
+More intuitively, integrating over a given time-frame $$t$$ to $$t + i$$, gives us a single number: the expected value of events over that interval. That output of the integral will vary by time interval, and that's what makes lambda change over time. To understand how that intregration part works, it was helpful for me to think of it like this: if the inverval $$t$$ to $$t_1$$ has a mean of 3, and $$t_1$$ to $$t_2$$ has a mean of 5, then the interval $$t$$ to $$t_2$$ has a mean of $$8 = 3 + 5$$. That's that's the two expectations (= means) summed together.  
+
+_Practical implication_  
+If this is the case in your work, you may consider modeling the expected value of the Poisson distribution as a function of time, among the other covariates. This will relax the assumption greatly, and still enable you to reap off the simplicity of the Poisson distribution.  
+
+But then there is a gotcha. Remember when we said that λ has a dual role as the mean and variance? That still applies here. Looking at the "relaxed": PMF*, the only thing that changes is that λ can vary freely with time. But it's still the same λ that orchestrates both the expected value and the dispersion of the PMF*, specifically: $$\mathbb{E}[X] = \mathrm{Var}(X)$$  
+
+There are various reasons for this not to hold in reality. Model misspecification, 
+
+
+
+
+4. **Time-varying λ**  
+
+**λ varying over a population and overdispersion**
+
+
+
+
+
+
 

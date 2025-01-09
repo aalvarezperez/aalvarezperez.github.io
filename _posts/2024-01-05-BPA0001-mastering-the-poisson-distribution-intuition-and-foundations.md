@@ -150,14 +150,29 @@ $$
 More intuitively, integrating over a given time interval $$t$$ to $$t + i$$, gives us a single number: the expected value of events over that interval. The integral will vary by each arbitrary interval, and that's what makes lambda change over time. To understand how that intregration part works, it was helpful for me to think of it like this: if the inverval $$t$$ to $$t_1$$ has a mean of 3, and $$t_1$$ to $$t_2$$ has a mean of 5, then the interval $$t$$ to $$t_2$$ has a mean of $$8 = 3 + 5$$. That's that's the two expectations (= means) summed together, and now the expectation over the entire interval.  
 
 **Practical implication** 
-If this is the case in your work, you may consider modeling the expected value of the Poisson distribution as a function of time, among the other covariates. This will relax the assumption greatly, and still enable you to reap off the simplicity of the Poisson distribution.  
+One may want to consider modeling the expected value of the Poisson distribution as a function of time. This will relax the assumption greatly, and still enable you to reap off the simplicity of the Poisson distribution. in generative model notation:  
+
+$$
+\lambda_{t} = \beta_{0} + \beta_1 \cdot time_{t}
+$$ 
+
+$$
+y_{t} \sim \mathrm{Poisson}\bigl(\lambda_{t}\bigr)
+$$
 
 ### Process-varying λ: Mixed Poisson distribution  
 But then there is a gotcha. Remember when we said that λ has a dual role as the mean and variance? That still applies here. Looking at the "relaxed": PMF*, the only thing that changes is that λ can vary freely with time. But it's still the same λ that orchestrates both the expected value and the dispersion of the PMF*, specifically: $$\mathbb{E}[X] = \mathrm{Var}(X)$$  
 
-There are various reasons for this constraint not to hold in reality. Model misspecification, event interdependence and unacounted for heterogeneity could be the issues at hand. I'd like to focus on the latter case, to introduce you to touch on the negative binomial distribution.  
+There are various reasons for this constraint not to hold in reality. Model misspecification, event interdependence and unacounted for heterogeneity could be the issues at hand. I'd like to focus on the latter case, as this one justifies the Negative Binomial distribution.  
 
-Imagine we have not one seller, but 10 of them and they list at a different intensity level. Then, essentially we have 10 Poisson processes going on, each orchestrated by their own $$λ_i$$, where i is the seller subscript, seller 1 to 10. If we plan to model the average $$\frac{1}{N} \sum_{i=1}^{N} \lambda_i$$ of those 10 sellers, then we simplify the mixture away, and surely can get to the expected value of all the sellers listing together, but the resulting λ is naive and does not know about the original spread of $$\lambda_i$$, and this will cause under or over dispersion. That means, the variance is no longer equal to the mean. Practically, unarming us from estimating error adequately!  
+**Heterogeneity and overdispersion**   
+Imagine we have not one seller, but 10 of them listing at different intensity levels, $$λ_i$$, where goes from 1 to the 10th seller. Then, essentially we have 10 Poisson processes going on. If we model the $$\lambda_{group}=\frac{1}{N} \sum_{i=1}^{N} \lambda_i$$ of those 10 sellers, then we simplify the mixture away. Surely can get to the expected value of all the sellers listing together, but the resulting $$\lambda_{group}$$ is naive and does not know about the original spread of $$\lambda_i$$, and this will cause under or overdispersion. That means, the variance is no longer equal to the mean - it's larger. Practically, this disables us from estimating confidence intervals adequately!  
+
+
+
+
+
+
 
 
 

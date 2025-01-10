@@ -53,7 +53,7 @@ $$
 \end{equation}
 $$  
 
-Where $$\lambda$$ is the rate parameter, and $$\mathrm{k}$$ is the manifested value of the random variable $$\mathrm{(k = 0, 1, 2, 3, …, k events)}$$. Very neat and compact.  
+Where $$\lambda$$ is the rate parameter, and $$\mathrm{k}$$ is the manifested value of the random variable $$(k = 0,1,2,3,...,k events)$$. Very neat and compact.  
 
 ![pmf](poisson_pmf_main_text_light.png){: .light }
 ![pmf](poisson_pmf_main_text_dark.png){: .dark }
@@ -72,7 +72,7 @@ Now that we know the smallest building blocks, let’s zoom out one step: what i
 
 1. $$\lambda^k$$ can be interpreted as a weight that expresses how likely it is for $$\mathrm{k}$$ events to happen, given that the expectation is $$\lambda$$. Note that "likely" here does not mean a probability, yet. It’s merely a signal strength.
 2. $$k!$$ is a combinatorial correction so that we can say that the order of the events happening is irrelevant. The events are interchangeable. 
-3. $$e^{-\lambda}$$ normalises the integral of the PMF \eqref{eq:pmf} function to sum up to 1. It’s called the _partition function_ of exponential-family distributions.
+3. $$e^{-\lambda}$$ normalises the integral of the PMF to sum up to 1. It’s called the _partition function_ of exponential-family distributions.
 
 In more details, $$\lambda^k$$ relates the observed value $$\mathrm{k}$$ to the expected value of the random variable, $$\lambda$$. Intuitively, more probability mass lies around the expected value. Hence, if the observed value lies close the expected, the probability of occurring is larger, than the probability of an observation far removed from the expectation. Before we can cross-check our intuition with the numerical behaviour of $$\lambda^k$$, we need to consider what $$k!$$ does.  
 
@@ -134,7 +134,7 @@ The two extensions are about letting $$\lambda$$ vary;
 These are not mutually exclusively, but neither they are the same.  
 
 ### Time-varying λ  
-The first approach extends the PMF \eqref{eq:pmf} so that for each time $$t$$, $$\lambda$$ can have it's own value. Let's call this one $$\mathrm{PMF^{*}}$$.    
+The first approach extends the PMF so that for each time $$t$$, $$\lambda$$ can have it's own value. Let's call this one $$\mathrm{PMF^{*}}$$.    
 
 $$
 \begin{equation}  
@@ -165,7 +165,7 @@ y_{t} \sim \mathrm{Poisson}\bigl(\lambda_{t}\bigr)
 $$
 
 ### Process-varying λ: Mixed Poisson distribution  
-But then there is a gotcha. Remember when I said that $$\lambda$$ has a dual role as the mean and variance? That still applies here. Looking at the "relaxed" PMF \eqref{eq:pmf2}, the only thing that changes is that $$\lambda$$ can vary freely with time. But it's still the same $$\lambda$$ that orchestrates both the expected value and the dispersion of \eqref{eq:pmf2}. More precisely, $$\mathbb{E}[X] = \mathrm{Var}(X)$$  still holds.  
+But then there is a gotcha. Remember when I said that $$\lambda$$ has a dual role as the mean and variance? That still applies here. Looking at the "relaxed" $$\PMF^{*}$$, the only thing that changes is that $$\lambda$$ can vary freely with time. But it's still the same $$\lambda$$ that orchestrates both the expected value and the dispersion of $$PMF^{*}$$. More precisely, $$\mathbb{E}[X] = \mathrm{Var}(X)$$  still holds.  
 
 There are various reasons for this constraint not to hold in reality. Model misspecification, event interdependence and unacounted for heterogeneity could be the issues at hand. I'd like to focus on the latter case, as this one justifies the Negative Binomial distribution, one of the topics I promised to open up.  
 

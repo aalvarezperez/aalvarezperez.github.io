@@ -16,10 +16,10 @@ timezone: Europe/Amsterdam
 
 title: Alejandro Alvarez # the main title
 
-tagline: Causal Inference • Product • Marketplaces
+tagline: Causal Inference, Data science and Marketplaces
 
 description: >- # used by seo meta and the atom feed
-  A place where I rumble about the foundations and applications of traditional statiscal methods and machine learning in my professional experience.
+  A place where I rumble about the foundations and applications of causal inference, experimentation and machine learning in my professional experience. Tag along to follow on data science topics with applications in pricing, retention, trust and more, in online marketplaces and beyond.
 
 # Fill in the protocol & hostname for your site.
 # E.g. 'https://username.github.io', note that it does not end with a '/'.
@@ -93,7 +93,7 @@ theme_mode: # [light | dark]
 cdn:
 
 # the avatar on sidebar, support local or CORS resources
-avatar:
+avatar: /assets/images/avatar.png
 
 # The URL of the site-wide social preview image used in SEO `og:image` meta tag.
 # It can be overridden by a customized `page.image` in front matter.

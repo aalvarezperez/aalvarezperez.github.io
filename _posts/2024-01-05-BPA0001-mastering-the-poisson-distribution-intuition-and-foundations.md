@@ -49,13 +49,14 @@ I find opening up the probability mass function (PMF) of distributions helpful t
 
 $$
 \begin{equation}  
-P(X = k) = \frac{\lambda^k e^{-\lambda}}{k!}
+  P(X = k) = \frac{\lambda^k e^{-\lambda}}{k!}
+  \label{eq:series}
 \end{equation}
 $$  
 
 Where λ is the rate parameter, and k is the manifested value of the random variable (0, 1, 2, 3, …, k events). Very neat and compact.  
 
-![pmf](poisson_pmf_main_text_light.png){: .light }
+![pmf](poisson_pmf_main_text_light.png){: .light .shadow}
 ![pmf](poisson_pmf_main_text_dark.png){: .dark }
 _The probability mass function of the Poisson distribution._  
 
@@ -95,9 +96,9 @@ The distribution simply describes probabilities for various number of counts in 
 
 *So, can we justify using the Poisson distribution for our marketplace example? Let’s open up the assumptions of a *Poisson process*, and take the test.*  
 
-1. **The occurrence of one event does not affect the probability of a second event.** Think of our seller going on to list another item tomorrow indifferent of having done so already toady, or the one from five days ago for that matter. The point here is that there is no memory between events. Nothing links them directly. Semi-formally, \P(event today) is equal to \P(event today | event before today). The only factor determining the probability of listing an item at a given period in time, is λ, the listing-rate parameter of the seller. 
-2. **The average rate at which events occur is independent of any occurrence.** Similarly to (1), no event in the past, nor future, has any effect on the levels on λ — it’s constant during the observed timeframe. The parallel to our example is that no past listing of an item encourages or discourages the seller to be more or less active at some deep idiosyncratic level.
-3. **Two events cannot occur at exactly the same instant.** If we were to zoom at an infinite granular level on the timescale, no two listings could have been placed simultaneously. Two events always follow each one another. In our example, that means the seller has to go through the process of listing an item iteratively.
+1. **The occurrence of one event does not affect the probability of a second event.** Think of our seller going on to list another item tomorrow indifferently of having done so already today, or the one from five days ago for that matter.  The point here is that there is no memory between events. Nothing links them directly. Semi-formally, \P(event today) is equal to \P(event today | event before today). The only factor determining the probability of listing an item at a given period in time, is λ, the listing-rate parameter of the seller. 
+3. **The average rate at which events occur is independent of any occurrence.** Similarly to (1), no event in the past, nor future, has any effect on the levels on λ — it’s constant during the observed timeframe. The parallel to our example is that no past listing of an item encourages or discourages the seller to be more or less active at some deep idiosyncratic level.
+4. **Two events cannot occur at exactly the same instant.** If we were to zoom at an infinite granular level on the timescale, no two listings could have been placed simultaneously. Two events always follow each one another. In our example, that means the seller has to go through the process of listing an item iteratively.
 
 ### The marketplace exmple: implications  
 
@@ -174,11 +175,12 @@ Among the few ways one can look at the Negative Binomial distribution, one way i
 
 Let's simulate this scenario to gain more intuition.  
 
-![gamma-poisson mixture](gamma_poisson_light.png){: .left}
+![gamma-poisson mixture](gamma_poisson_light.png){: .left width="972" height="589" .w-50 .shadow}
+![gamma-poisson mixture](gamma_poisson_dark.png){: .left width="972" height="589" .w-50 }
 _Gamma-Poisson mixture distribution versus homogenous Poisson distribution._  
 
 <details>
-  <summary>R code for Gamma-Poisson simulation</summary>
+  <summary>R code for Gamma-Poisson simulation</summary>  
   
 ```{R}
 N <- 100000
@@ -207,6 +209,7 @@ df_gamma_poisson %>%
     x = expression(k)
   )
 ```
+
 </details>
 
 

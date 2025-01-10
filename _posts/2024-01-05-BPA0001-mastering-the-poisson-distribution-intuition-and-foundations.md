@@ -4,7 +4,7 @@ title: "Mastering the Poisson Distribution: Intuition and Foundations"
 description: "Take a dive into the math and exemplifying use cases of the Poisson distribution."
 date: 2025-01-05 08:30:00 +0100
 categories: [Foundations, Distributions]
-tags: [poisson, stats, discrete, distribution]
+tags: [poisson, stats, distributions]
 media_subpath: /assets/images/BPA0001/
 toc: true
 math: true
@@ -72,15 +72,15 @@ Now that we know the smallest building blocks, let’s zoom out one step: what i
 
 1. $$\lambda^k$$ can be interpreted as a weight that expresses how likely it is for $$\mathrm{k}$$ events to happen, given that the expectation is $$\lambda$$. Note that "likely" here does not mean a probability, yet. It’s merely a signal strength.
 2. $$k!$$ is a combinatorial correction so that we can say that the order of the events happening is irrelevant. The events are interchangeable. 
-3. $$e^{-\lambda}$$ normalises the integral of the PMF to sum up to 1. It’s called the _partition function_ of exponential-family distributions.
+3. $$e^{-\lambda}$$ normalises the integral of the PMF function to sum up to 1. It’s called the _partition function_ of exponential-family distributions.
 
 In more details, $$\lambda^k$$ relates the observed value $$\mathrm{k}$$ to the expected value of the random variable, $$\lambda$$. Intuitively, more probability mass lies around the expected value. Hence, if the observed value lies close the expected, the probability of occurring is larger, than the probability of an observation far removed from the expectation. Before we can cross-check our intuition with the numerical behaviour of $$\lambda^k$$, we need to consider what $$k!$$ does.  
 
 Had we cared about the order of events, then each unique event could be ordered in $$\mathrm{k}!$$ ways. But because we don’t, and we deem each event interchangeable, we “divide out” $$\mathrm{k}!$$ from $$\lambda^\mathrm{k}$$ to correct for the overcounting. 
 
-Since $$\lambda^\math{k}$$ is an exponential term, the output will always be larger as $$\mathrm{k}$$ grows, keeping lambda constant. That is the opposite of our intuition that there is _maximum_ probability when $$\lambda = \mathrm{k}$$. But now that we know about the interchangeable events assumption, and the overcounting issue, we know that we have to factor in $$\mathrm{k!}$$ like so: $$\frac{\lambda^k\mathrm{e}^{-\lambda}}{k!}$$ to see the behaviour we expect.  
+Since $$\lambda^\mathrm{k}$$ is an exponential term, the output will always be larger as $$\mathrm{k}$$ grows, keeping lambda constant. That is the opposite of our intuition that there is _maximum_ probability when $$\lambda = \mathrm{k}$$. But now that we know about the interchangeable events assumption, and the overcounting issue, we know that we have to factor in $$\mathrm{k!}$$ like so: $$\frac{\lambda^k\mathrm{e}^{-\lambda}}{k!}$$ to see the behaviour we expect.  
 
-Now let’s check the intuition of the relationship between $$\lambda$$ and $$\mathrm{k} through $$\lambda^\mathrm{k}$$, corrected for $$k!$$. For the same λ, say λ = 4, we should see $$\frac{\lambda^\mathrm{k}\mathrm{e}^{-\lambda}}{\mathrm{k!}}$$ to be smaller for values of \mathrm{k} that are far removed from 4, compared to values of k that lie close to 4. Like so: inline code: $$4^2 = 16$$ is smaller than $$4 ^ 4 = 256$$. This is consistent with the intuition of a higher likelihood of \mathrm{k} when it’s near the expectation. The image below shows this relationship more generally, where you see that the output is larger as \mathrm{k} approaches $$\lambda$$.  
+Now let’s check the intuition of the relationship between $$\lambda$$ and $$\mathrm{k}$$ through $$\lambda^\mathrm{k}$$, corrected for $$k!$$. For the same λ, say λ = 4, we should see $$\frac{\lambda^\mathrm{k}\mathrm{e}^{-\lambda}}{\mathrm{k!}}$$ to be smaller for values of \mathrm{k} that are far removed from 4, compared to values of k that lie close to 4. Like so: inline code: $$4^2 = 16$$ is smaller than $$4 ^ 4 = 256$$. This is consistent with the intuition of a higher likelihood of \mathrm{k} when it’s near the expectation. The image below shows this relationship more generally, where you see that the output is larger as \mathrm{k} approaches $$\lambda$$.  
 
 ![λ ^ k](lambda_to_k_light.png){: .light}  
 ![λ ^ k](lambda_to_k_dark.png){: .dark}  
@@ -127,7 +127,7 @@ That said, here are some counters I use when needed.
 Everything described so far pertains to the standard, or homogenous, Poisson process. But what if reality begs for something different?  
 Of course, you can rethink the entire approach like switching to a different distribution. But in the next section we'll cover two extensions of the Poisson distribution when the constant $$\lambda$$ assumption does not hold.  
 
-The two extensions are about letting $$\lambda$$ vary;  
+The two extensions are about letting $$\lambda$$ vary,
 1. **As a function of time:** a single seller whose listing rate ramps up before holidays and slows down afterward  
 2. **As a function of subprocesses:** multiple sellers listing items, each with their own $$\lambda$$ can be seen as multiple subprocesses 
 
@@ -151,7 +151,7 @@ $$
 \end{equation}
 $$  
 
-More intuitively, integrating over a particular interval $$t$$ to $$t + i$$, gives us a single number: the expected value of events over that interval. The integral will vary by each arbitrary interval, and that's what makes $$\lambda$ change over time. To understand how that intregration part works, it was helpful for me to think of it like this: if the inverval $$t$$ to $$t_1$$ integrates to 3, and $$t_1$$ to $$t_2$$ to 5, then the interval $$t$$ to $$t_2$$ integrates to $$8 = 3 + 5$$. That's the two expectations summed up and, now, the expectation of the entire interval.  
+More intuitively, integrating over a particular interval $$t$$ to $$t + i$$, gives us a single number: the expected value of events over that interval. The integral will vary by each arbitrary interval, and that's what makes $$\lambda$$ change over time. To understand how that intregration part works, it was helpful for me to think of it like this: if the inverval $$t$$ to $$t_1$$ integrates to 3, and $$t_1$$ to $$t_2$$ to 5, then the interval $$t$$ to $$t_2$$ integrates to $$8 = 3 + 5$$. That's the two expectations summed up and, now, the expectation of the entire interval.  
 
 **Practical implication** 
 One may want to consider modeling the expected value of the Poisson distribution as a function of time. This will relax the assumption, and still enable you to reap off the simplicity of the Poisson distribution. In generative model notation:  
@@ -165,7 +165,8 @@ y_{t} \sim \mathrm{Poisson}\bigl(\lambda_{t}\bigr)
 $$
 
 ### Process-varying λ: Mixed Poisson distribution  
-But then there is a gotcha. Remember when I said that $$\lambda$$ has a dual role as the mean and variance? That still applies here. Looking at the "relaxed" $$\PMF^{*}$$, the only thing that changes is that $$\lambda$$ can vary freely with time. But it's still the same $$\lambda$$ that orchestrates both the expected value and the dispersion of $$PMF^{*}$$. More precisely, $$\mathbb{E}[X] = \mathrm{Var}(X)$$  still holds.  
+
+But then there is a gotcha. Remember when I said that $$\lambda$$ has a dual role as the mean and variance? That still applies here. Looking at the "relaxed" $$PMF^{*}$$, the only thing that changes is that $$\lambda$$ can vary freely with time. But it's still the same $$\lambda$$ that orchestrates both the expected value and the dispersion of $$PMF^{*}$$. More precisely, $$\mathbb{E}[X] = \mathrm{Var}(X)$$  still holds.  
 
 There are various reasons for this constraint not to hold in reality. Model misspecification, event interdependence and unacounted for heterogeneity could be the issues at hand. I'd like to focus on the latter case, as this one justifies the Negative Binomial distribution, one of the topics I promised to open up.  
 

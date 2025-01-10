@@ -173,20 +173,22 @@ There are various reasons for this constraint not to hold in reality. Model miss
 Imagine we have not one seller, but 10 of them listing at different intensity levels, $$λ_i$$, $$\mathrm{i} = 1, 2, 3,..., 10$$ sellers. Then, essentially we have 10 Poisson processes going on. If we model the $$\lambda_{group}=\frac{1}{N} \sum_{i=1}^{N} \lambda_i$$ of those 10 sellers, then we simplify the mixture away. Surely can get to the expected value of all the sellers listing together, but the resulting $$\lambda_{group}$$ is naive and does not know about the original spread of $$\lambda_i$$, and this will cause overdispersion: the variance is larger than mean. Practically, this disables us from estimating confidence intervals adequately, and hence inflate the false positive rate. So how what do we do now?  
 
 **Negative Binomial: generalising the Possion distribution**  
-Among the few ways one can look at the Negative Binomial distribution, one way is to see it as a compound Poisson process - sounds familiar yet? That means that there are multiple independent Poisson processes that are summed up to a single one. Each subprocess has λ drawn from a gamma distribution, $$\Gamma\bigl(r,\theta\bigr)$$ (read why Gamma [here](https://en.wikipedia.org/wiki/Negative_binomial_distribution#Definitions)). The mixture of $$\lambda$$ This lends the negative binomial distribution the alias *Gamma-Poisson mixture*. Mathematicallt, first we draw $$\lambda$$ from a Gamma distribution: $$\lambda \sim \Gamma\bigl(r,\theta\bigr)$$, then we draw the count $$\mathrm{X}$$ like: $$\mathrm{X} \| \lambda \sim \mathrm{Poisson}\bigl(\lambda\bigr)$$.  
+Among the few ways one can look at the Negative Binomial distribution, one way is to see it as a compound Poisson process - sounds familiar yet? That means that there are multiple independent Poisson processes that are summed up to a single one. Each subprocess has λ drawn from a gamma distribution, $$\Gamma\bigl(r,\theta\bigr)$$ (read why Gamma [here](https://en.wikipedia.org/wiki/Negative_binomial_distribution#Definitions)). The mixture of $$\lambda$$ This lends the negative binomial distribution the alias *Gamma-Poisson mixture*. Mathematically, first we draw $$\lambda$$ from a Gamma distribution: $$\lambda \sim \Gamma\bigl(r,\theta\bigr)$$, then we draw the count $$\mathrm{X}$$ like: $$\mathrm{X} \| \lambda \sim \mathrm{Poisson}\bigl(\lambda\bigr)$$.  
 
 Let's simulate this scenario to gain more intuition.  
 
-![gamma-lambda](gamma_lambda_light.png){: .right width="972" height="589" .w-50 .shadow .light}
+![gamma-lambda](gamma_lambda_light.png){: .right width="972" height="589" .w-50 .light}
 ![gamma-poisson mixture](gamma_lambda_dark.png){: .right width="972" height="589" .w-50 .dark}
 _The distribution of $$\lambda_{i}$$ follows $$\Gamma\bigl(r,\theta\bigr)$$_
-As per the first step of the generating model, the draw lambda from a gamma distribution: $$\lambda \sim \Gamma\bigl(r,\theta\bigr)$$. Intuitively, the gamma distribution tells about the variery in intensity e.g., listing rate amongst the subprocesses, or sellers.
 
-![gamma-poisson mixture](gamma_poisson_light.png){: .left width="972" height="589" .w-50 .shadow .light}
+As per the first step of the generating model, the draw lambda from a gamma distribution: $$\lambda \sim \Gamma\bigl(r,\theta\bigr)$$. Intuitively, the gamma distribution tells about the variery in intensity e.g., listing rate amongst the subprocesses, or sellers.  
+
+On a practical note, one can install their assumptions about the degree of heterogeneity in this step of the generative model. By varying the levels of heterogeneity, one can observe the impact on the final Poisson-like distribution.  
+
+![gamma-poisson mixture](gamma_poisson_light.png){: .left width="972" height="589" .w-50 .light}
 ![gamma-poisson mixture](gamma_poisson_dark.png){: .left width="972" height="589" .w-50 .dark}
 _Gamma-Poisson mixture distribution versus homogenous Poisson distribution._  
 In the second step, we plug the obtained $$\lambda$$ in the Poisson distribution: , and obtain a Poisson-like distribution that represents the summed subprocesses. Notably, this unified process has a larger dispersion than what expected from a homogeneous Poisson distribution, but in line with the mixed distribution for $$\lambda$$.  
-
 
 <details>
   <summary>R code for Gamma-Poisson simulation</summary>  
@@ -219,7 +221,15 @@ df_gamma_poisson %>%
   )
 ```
 
-</details>
+</details>  
+
+### Heterogeneous $$\lambda$$ and inference
+A practical consequence of opening up to this flexibility in your assumed distribution is that inference becomes harder. The 'flexibility' parameter(s) (= Gamma parameters) have to be estimated. Then, first, the parameters behave like a flexible explanator of the data, tending to overfit and explain away variance in your variable. Second, and linked to previous statement, these estimates come with their own variance, and in turn this variance reduces the power of identifying a difference in means if there is one.  
+
+**Counter the loss of power**  
+1. Confirm that you indeed need to extend the standard Poisson distribution. If not, then simplify to the best simplest model. A quick check on overdispersion may do for this.
+2. Pin down the estimates of the gamma mixture with regulating priors (think: Bayes)
+
 
 
 

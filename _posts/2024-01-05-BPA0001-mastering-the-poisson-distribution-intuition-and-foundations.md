@@ -166,7 +166,47 @@ But then there is a gotcha. Remember when we said that λ has a dual role as the
 There are various reasons for this constraint not to hold in reality. Model misspecification, event interdependence and unacounted for heterogeneity could be the issues at hand. I'd like to focus on the latter case, as this one justifies the Negative Binomial distribution.  
 
 **Heterogeneity and overdispersion**   
-Imagine we have not one seller, but 10 of them listing at different intensity levels, $$λ_i$$, where goes from 1 to the 10th seller. Then, essentially we have 10 Poisson processes going on. If we model the $$\lambda_{group}=\frac{1}{N} \sum_{i=1}^{N} \lambda_i$$ of those 10 sellers, then we simplify the mixture away. Surely can get to the expected value of all the sellers listing together, but the resulting $$\lambda_{group}$$ is naive and does not know about the original spread of $$\lambda_i$$, and this will cause under or overdispersion. That means, the variance is no longer equal to the mean - it's larger. Practically, this disables us from estimating confidence intervals adequately!  
+Imagine we have not one seller, but 10 of them listing at different intensity levels, $$λ_i$$, $$\mathrm{i} = 1, 2, 3,..., 10$$ sellers. Then, essentially we have 10 Poisson processes going on. If we model the $$\lambda_{group}=\frac{1}{N} \sum_{i=1}^{N} \lambda_i$$ of those 10 sellers, then we simplify the mixture away. Surely can get to the expected value of all the sellers listing together, but the resulting $$\lambda_{group}$$ is naive and does not know about the original spread of $$\lambda_i$$, and this will cause overdispersion: the variance is larger than mean. Practically, this disables us from estimating confidence intervals adequately, and hence inflate the false positive rate. So how what do we do now?  
+
+**Negative Binomial: generalising the Possion distribution**  
+Among the few ways one can look at the Negative Binomial distribution, one way is to see it as a compound Poisson process - sounds familiar yet? That means that there are multiple independent Poisson processes that are summed up to a single one. Each subprocess has λ drawn from a gamma distribution, $$\Gamma\bigl(r,\theta\bigr)$$ (read why Gamma [here](https://en.wikipedia.org/wiki/Negative_binomial_distribution#Definitions)). The mixture of $$\lambda$$ This lends the negative binomial distribution the alias *Gamma-Poisson mixture*. Mathematicallt, first we draw $$\lambda$$ from a Gamma distribution: $$\lambda \sim \Gamma\bigl(r,\theta\bigr)$$, then we draw the count $$\mathrm{X}$$ like: $$\mathrm{X} \| \lambda \sim \mathrm{Poisson}\bigl(\lambda\bigr)$$.  
+
+Let's simulate this scenario to gain more intuition.  
+
+<details>
+  <summary>Code for Gamma-Poisson simulation</summary>
+  
+```R
+N <- 100000
+shape = 2.5,
+scale = 5,
+df_gamma_poisson <- tibble(  
+  gamma_lambda = rgamma(N, shape = shape / scale, scale = scale),
+  `Homogenous Poisson` = rpois(N, lambda = shape),
+  `Gamma-Poisson` = rpois(N, lambda = gamma_lambda)
+  ) %>%
+  pivot_longer(c(`Homogenous Poisson`:`Gamma-Poisson`)) %>% 
+  count(name, value) %>% 
+  group_by(name) %>% 
+  mutate(
+    p = n/sum(n)
+  )
+
+df_gamma_poisson %>% 
+  ggplot(aes(value, p, fill = name)) + 
+  theme_adevinta() + 
+  scale_fill_adevinta('coolors2') + 
+  geom_col(position = 'identity', alpha = .9) + 
+  labs(
+    fill = NULL,
+    y = expression("P(k)"),
+    x = expression(k)
+  )
+```
+</details>
+
+
+
 
 
 

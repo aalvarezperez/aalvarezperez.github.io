@@ -53,7 +53,7 @@ $$
 \end{equation}
 $$  
 
-Where $$\lambda$$ is the rate parameter, and $$\mathrm{k}$$ is the manifested value of the random variable $$\mathrm{(k = 0, 1, 2, 3, …, k events)}$$. Very neat and compact.  
+Where $$\lambda$$ is the rate parameter, and $$\mathrm{k}$$ is the manifested value of the random variable $$(k = 0,1,2,3,...,k events)$$. Very neat and compact.  
 
 ![pmf](poisson_pmf_main_text_light.png){: .light }
 ![pmf](poisson_pmf_main_text_dark.png){: .dark }
@@ -165,6 +165,7 @@ y_{t} \sim \mathrm{Poisson}\bigl(\lambda_{t}\bigr)
 $$
 
 ### Process-varying λ: Mixed Poisson distribution  
+
 But then there is a gotcha. Remember when I said that $$\lambda$$ has a dual role as the mean and variance? That still applies here. Looking at the "relaxed" $$PMF^{*}$$, the only thing that changes is that $$\lambda$$ can vary freely with time. But it's still the same $$\lambda$$ that orchestrates both the expected value and the dispersion of $$PMF^{*}$$. More precisely, $$\mathbb{E}[X] = \mathrm{Var}(X)$$  still holds.  
 
 There are various reasons for this constraint not to hold in reality. Model misspecification, event interdependence and unacounted for heterogeneity could be the issues at hand. I'd like to focus on the latter case, as this one justifies the Negative Binomial distribution, one of the topics I promised to open up.  

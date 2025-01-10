@@ -174,7 +174,7 @@ Among the few ways one can look at the Negative Binomial distribution, one way i
 Let's simulate this scenario to gain more intuition.  
 
 <details>
-  <summary>Code for Gamma-Poisson simulation</summary>
+  <summary>R code for Gamma-Poisson simulation</summary>
   
 ```R
 N <- 100000

@@ -7,6 +7,7 @@ tags: [poisson, stats, discrete, distribution]
 media_subpath: /assets/images/BPA0001/
 toc: true
 math: true
+pin: true
 image:
   path: poisson_pmf_light.png
 ---
@@ -173,10 +174,13 @@ Among the few ways one can look at the Negative Binomial distribution, one way i
 
 Let's simulate this scenario to gain more intuition.  
 
+![gamma-poisson mixture](gamma_poisson_light.png){: .left}
+_Gamma-Poisson mixture distribution versus homogenous Poisson distribution._
+
 <details>
   <summary>R code for Gamma-Poisson simulation</summary>
   
-```R
+```{R}
 N <- 100000
 shape = 2.5,
 scale = 5,

@@ -129,8 +129,10 @@ Of course, you rethink the entire approach, and switch to an different distribut
 
 
 Varying lambda can happen in two ways:  
-1. **As a function of time:** 
-2. **As a function of sub-processes:** think of multiple sellers listing items, each with their own λ
+1. **As a function of time:** a single seller whose listing rate ramps up before holidays and slows down afterward  
+2. **As a function of sub-processes:** multiple sellers listing items, each with their own λ  
+
+Both are commonly discussed extensions of the standard Poisson process. These are not mutually exclusive and, yes, in some way they are similar.  
 
 ### Time-varying λ  
 The former case extends the PMF so that for each time $$t$$, λ can have it's own value. Let's call this one PMF*  
@@ -175,9 +177,16 @@ Among the few ways one can look at the Negative Binomial distribution, one way i
 
 Let's simulate this scenario to gain more intuition.  
 
-![gamma-poisson mixture](gamma_poisson_light.png){: .left width="972" height="589" .w-50 .shadow}
-![gamma-poisson mixture](gamma_poisson_dark.png){: .left width="972" height="589" .w-50 }
+![gamma-lambda](gamma_lambda_light.png){: .right width="972" height="589" .w-50 .shadow .light}
+![gamma-poisson mixture](gamma_lambda_dark.png){: .right width="972" height="589" .w-50 .dark}
+_The distribution of $$\lambda_{i}$$ follows $$\Gamma\bigl(r,\theta\bigr)$$_
+As per the first step of the generating model, the draw lambda from a gamma distribution: $$\lambda \sim \Gamma\bigl(r,\theta\bigr)$$. Intuitively, the gamma distribution tells about the variery in intensity e.g., listing rate amongst the subprocesses, or sellers.
+
+![gamma-poisson mixture](gamma_poisson_light.png){: .left width="972" height="589" .w-50 .shadow .light}
+![gamma-poisson mixture](gamma_poisson_dark.png){: .left width="972" height="589" .w-50 .dark}
 _Gamma-Poisson mixture distribution versus homogenous Poisson distribution._  
+In the second step, we plug the obtained $$\lambda$$ in the Poisson distribution: , and obtain a Poisson-like distribution that represents the summed subprocesses. Notably, this unified process has a larger dispersion than what expected from a homogeneous Poisson distribution, but in line with the mixed distribution for $$\lambda$$.  
+
 
 <details>
   <summary>R code for Gamma-Poisson simulation</summary>  

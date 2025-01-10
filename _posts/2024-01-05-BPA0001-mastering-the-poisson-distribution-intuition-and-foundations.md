@@ -232,7 +232,7 @@ A practical consequence of opening up to this flexibility in your assumed distri
 1. Confirm that you indeed need to extend the standard Poisson distribution. If not, then simplify to the best simplest model. A quick check on overdispersion may do for this.
 2. Pin down the estimates of the gamma mixture distribution parameters with regulating, informative, priors (think: Bayes)
 
-In my research process to write this blog I learned a lot about the connective tissue of this all: how the binomial distribution has major underpinning in the proccesses we discussed. And while I'd love to ramble on about this, I'll leave it for another post, perhaps. In the meanwhile, feel fre to share your understanding in the comments section below 👍  
+In my research process to write this blog I learned a lot about the connective tissue of this all: how the binomial distribution has major underpinning in the proccesses we discussed. And while I'd love to ramble on about this, I'll leave it for another post, perhaps. In the meanwhile, feel free to share your understanding in the comments section below 👍  
 
 ## Conclusion  
 

@@ -89,7 +89,7 @@ Now let’s check the intuition of the relationship between $$\lambda$$ and $$\m
 First, let’s clarify the difference between a *Poisson process*, and the *Poisson distribution*. The process is a stochastic continuous-time model of points happening in given interval: 1D, a line; 2D, an area, or higher dimensions. We, data scientists, most often deal with the one-dimensional case, where the “line” is time, and the points are the events of interest - I dare to say.  
 
 These are the assumptions of the Poisson process:  
-1. **The occurrence of one event does not affect the probability of a second event.** Think of our seller going on to list another item tomorrow indifferently of having done so already today, or the one from five days ago for that matter.  The point here is that there is no memory between events. Nothing links them directly.  
+1. **The occurence of one event does not affect the probability of a second event.** Think of our seller going on to list another item tomorrow indifferently of having done so already today, or the one from five days ago for that matter.  The point here is that there is no memory between events. Nothing links them directly.  
 3. **The average rate at which events occur, is independent of any occurrence.** Similarly to (1), no event in the past, nor future, has any effect on the levels on $$\lambda$$ — it’s constant during the observed timeframe. The parallel to our example is that no past listing of an item encourages or discourages the seller to be more or less active at some deep idiosyncratic level, like motivation.  
 4. **Two events cannot occur at exactly the same instant.** If we were to zoom at an infinite granular level on the timescale, no two listings could have been placed simultaneously; always sequentially.  
 
@@ -98,7 +98,7 @@ From these assumptions-no memory, constant rate, events happening alone—it fol
 _A note on the distribution_  
 The distribution simply describes probabilities for various number of counts in an interval. Strictly speaking, one can use the distribution pragmatically whenever the data is nonnegative, can be unbounded on the right, has mean λ, and it reasonably models the data. It would be just convenient if the underlying process is a Poisson one, and actually justifies using the distribution.  
 
-### The marketplace exmple: implications  
+### The marketplace example: implications  
 
 So, can we justify using the Poisson distribution for our marketplace example? Let’s open up the assumptions of a *Poisson process*, and take the test.  
 
@@ -112,7 +112,7 @@ _Consequence:_ two events are no longer independent, as the occurance of one inf
 
 **Simultaneous events**  
 _Why it may fail:_ Batch-listing, a new feature, was introduced to help the sellers.  
-_Consequence:_ multiple listings would come online at the same time, _clumbed_ together, and they would be counted simultaneously.  
+_Consequence:_ multiple listings would come online at the same time, _clumped_ together, and they would be counted simultaneously.  
 
 ### Balancing rigour and pragmatism  
 As Data Scientists on the job we may feel trapped between rigour and pragmatism, when the Poisson distribution falls short. I suggest these three things to know when to err on the side of rigour, or pragmatism:  
@@ -134,7 +134,7 @@ The two extensions are about letting $$\lambda$$ vary,
 These are not mutually exclusively, but neither they are the same.  
 
 ### Time-varying λ  
-The first approach extends the PMF so that for each time $$t$$, $$\lambda$$ can have it's own value. Let's call this one $$\mathrm{PMF^{*}}$$.    
+The first approach extends the PMF so that for each time $$t$$, $$\lambda$$ can have its own value. Let's call this one $$\mathrm{PMF^{*}}$$.    
 
 $$
 \begin{equation}  

@@ -175,7 +175,7 @@ Among the few ways one can look at the Negative Binomial distribution, one way i
 Let's simulate this scenario to gain more intuition.  
 
 ![gamma-poisson mixture](gamma_poisson_light.png){: .left}
-_Gamma-Poisson mixture distribution versus homogenous Poisson distribution._
+_Gamma-Poisson mixture distribution versus homogenous Poisson distribution._  
 
 <details>
   <summary>R code for Gamma-Poisson simulation</summary>

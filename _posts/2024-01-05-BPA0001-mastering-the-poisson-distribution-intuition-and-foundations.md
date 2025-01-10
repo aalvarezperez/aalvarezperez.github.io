@@ -127,7 +127,7 @@ That said, here are some counters I use when needed.
 Everything described so far pertains to the standard, or homogenous, Poisson process. But what if reality begs for something different?  
 Of course, you can rethink the entire approach like switching to a different distribution. But in the next section we'll cover two extensions of the Poisson distribution when the constant $$\lambda$$ assumption does not hold.  
 
-The two extensions are about letting $$\lambda$$ vary;  
+The two extensions are about letting $$\lambda$$ vary,
 1. **As a function of time:** a single seller whose listing rate ramps up before holidays and slows down afterward  
 2. **As a function of subprocesses:** multiple sellers listing items, each with their own $$\lambda$$ can be seen as multiple subprocesses 
 

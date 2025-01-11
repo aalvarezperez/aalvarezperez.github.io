@@ -220,7 +220,7 @@ df_gamma_poisson %>%
     fill = NULL,
     y = expression("P(k)"),
     x = expression(k)
-  )
+  )  
 ```
 
 </details>  

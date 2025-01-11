@@ -24,26 +24,27 @@ _If you know of a resource that has helped you grasp the concepts in this blog p
 1. **Examples and use cases:** Let’s walk through some use cases and sharpen the intuition I just mentioned. Along the way, the relevance of the Poisson distribution will become clear.
 2. **The foundation:** Next, let’s break down the equation into its individual components. By studying each part, we’ll uncover why the distribution works the way it does.
 3. **The assumptions:** Equipped with some formality, it will be easier to understand the assumptions that power the distribution, and at the same time set the boundaries for when it works, and when not.
-4. **When real life deviates:** Finally, let’s explore the special links that the Poisson distribution has with the Negative Binomial distribution. Understanding these relationships can deepen our understanding, and provide alternatives when the Poisson distribution is not suited for the job.
+4. **When real life deviates from the model:** Finally, let’s explore the special links that the Poisson distribution has with the Negative Binomial distribution. Understanding these relationships can deepen our understanding, and provide alternatives when the Poisson distribution is not suited for the job.
 
 ## Example in an online marketplace  
 
 I chose to deep dive into the Poisson distribution because it appears frequently in my day-to-day work. Online marketplaces stand on binary user choices from two sides: a seller deciding to list an item, and a buyer deciding to make a purchase. These micro-behaviours drive supply and demand, both in the short and long term. A marketplace is born.  
 
-These binary choices aggregate to counts —  the sum of many such decision as they occur. Attach a timeframe to this counting process, and you’ll start seeing Poisson distributions everywhere. Let’s look into a concrete example next.  
+Binary choices aggregate to counts —  the sum of many such decision as they occur. Attach a timeframe to this counting process, and you’ll start seeing Poisson distributions everywhere. Let’s look into a concrete example next.  
 
-Consider a seller on a platform. On a given month, the seller may or may not list an item for sale (a binary choice) We would only know if she did, cause then we have a measured count of the event. Nothing stops him from listing another item in the same month. If she does, we count up those events. The total could be zero for an inactive seller or, say, 120 for a very engaged seller.  
+Consider a seller on a platform. On a given month, the seller may or may not list an item for sale (a binary choice) We would only know if she did, cause then we have a measured count of the event. Nothing stops her from listing another item in the same month. If she does, we count up those events. The total could be zero for an inactive seller or, say, 120 for a very engaged seller.  
 
-Over several months, we would observe a varying number of listed items by this seller — sometimes less, sometimes more —  hovering around an _average_ monthly listings. That is essentially a Poisson process.
-*When we get to the assumptions section, you’ll see what we had to assume away to make this example work.*  
+Over several months, we would observe a varying number of listed items by this seller — sometimes less, sometimes more —  hovering around an _average_ monthly listings. That is essentially a Poisson process. *When we get to the assumptions section, you’ll see what we had to assume away to make this example work.*  
 
 ### Other examples  
+Other things that can be modelled with a Poisson distribution are: 
+1. Sports analytics: the number of goals in a match between two teams
+2. Qeueing: customers arriving at a help desk, customer support calls
+3. Insurances: the number of claims made in a given period
 
-Coming soon.
-
+Each deserve to be inspected, but for the remaining of the post, we'll use the marketplace example to illustrate the inner workings of the distribution.  
 
 ## The math  
-
 I find opening up the probability mass function (PMF) of distributions helpful to understanding why things work as they do. The PMF of the Poisson distribution goes like:  
 
 $$
@@ -64,42 +65,45 @@ _The probability mass function of the Poisson distribution._
 In the context of our earlier example - a seller listing items on our platform — $$\lambda$$ represents the seller’s average monthly listings. As the expected monthly value for this seller, λ orchestrates the number of items she would list in a month. Note that $$\lambda$$ is a greek letter, so read: λ is a parameter that we can estimate from data. On the other hand, $$k$$ does not hold any information about the seller’s idiosyncratic behaviour. It’s the target value we set for the number of events that may happen to learn about its probability. 
 
 ### The dual role of $$\lambda$$ as the mean and variance  
-When I said that $$\lambda$$ orchestrates the number of monthly listings for the seller, I meant it quite literally. Namely, $$\lambda$$ is both the expected value and variance of the distribution, indifferently, for all values of $$\lambda$$. This means that the mean-to-variance ratio (index of dispersion) is always 1. To add perspective, the _normal_ distribution requires two parameters, $$\mu$$ and $$\sigma^{2}$$, the average and variance respectively, to describe the distribution. The Poisson distribution does it with just one. Having to estimate only one parameter can be beneficial for parametic inference work. Specifically, by reducing the variance of the parameter estimates. On the other hand, it can be too limiting of an assumption. Alternatives like the Negative Binomial distribution can alleviate this limitation. We’ll explore that later. We discuss both cases later.  
+When I said that $$\lambda$$ orchestrates the number of monthly listings for the seller, I meant it quite literally. Namely, $$\lambda$$ is both the expected value and variance of the distribution, indifferently, for all values of $$\lambda$$. This means that the mean-to-variance ratio (index of dispersion) is always 1.  
+
+To put this into perspective, the _normal_ distribution requires two parameters - $$\mu$$ and $$\sigma^{2}$$, the average and variance respectively - to fully describe it. The Poisson distribution achieves the same with just one.  
+
+Having to estimate only one parameter can be beneficial for parametric inference. Specifically, by reducing the variance of the model, and increasing the statistical power. On the other hand, it can be too limiting of an assumption. Alternatives like the Negative Binomial distribution can alleviate this limitation. We'll explore that later.  
 
 ### Breaking down the probability mass function  
-
 Now that we know the smallest building blocks, let’s zoom out one step: what is $$\lambda^k$$ , $$e^{-\lambda}$$, and $$\mathrm{k}!$$, and more importantly, what is each of these component’s function in the whole?  
 
-1. $$\lambda^k$$ can be interpreted as a weight that expresses how likely it is for $$\mathrm{k}$$ events to happen, given that the expectation is $$\lambda$$. Note that "likely" here does not mean a probability, yet. It’s merely a signal strength.
-2. $$k!$$ is a combinatorial correction so that we can say that the order of the events happening is irrelevant. The events are interchangeable. 
+1. $$\lambda^k$$ is a weight that expresses how likely it is for $$\mathrm{k}$$ events to happen, given that the expectation is $$\lambda$$. Note that "likely" here does not mean a probability, yet. It’s merely a signal strength.
+2. $$k!$$ is a combinatorial correction so that we can say that the order of the events is irrelevant. The events are interchangeable. 
 3. $$e^{-\lambda}$$ normalises the integral of the PMF function to sum up to 1. It’s called the _partition function_ of exponential-family distributions.
 
-In more details, $$\lambda^k$$ relates the observed value $$\mathrm{k}$$ to the expected value of the random variable, $$\lambda$$. Intuitively, more probability mass lies around the expected value. Hence, if the observed value lies close the expected, the probability of occurring is larger, than the probability of an observation far removed from the expectation. Before we can cross-check our intuition with the numerical behaviour of $$\lambda^k$$, we need to consider what $$k!$$ does.  
+In more details, $$\lambda^k$$ relates the observed value $$\mathrm{k}$$ to the expected value of the random variable, $$\lambda$$. Intuitively, more probability mass lies around the expected value. Hence, if the observed value lies close to the expectation, the probability of occurring is larger, than the probability of an observation far removed from the expectation. Before we can cross-check our intuition with the numerical behaviour of $$\lambda^k$$, we need to consider what $$k!$$ does.  
 
+**Interchangeable events**
 Had we cared about the order of events, then each unique event could be ordered in $$\mathrm{k}!$$ ways. But because we don’t, and we deem each event interchangeable, we “divide out” $$\mathrm{k}!$$ from $$\lambda^\mathrm{k}$$ to correct for the overcounting. 
 
-Since $$\lambda^\mathrm{k}$$ is an exponential term, the output will always be larger as $$\mathrm{k}$$ grows, keeping lambda constant. That is the opposite of our intuition that there is _maximum_ probability when $$\lambda = \mathrm{k}$$. But now that we know about the interchangeable events assumption, and the overcounting issue, we know that we have to factor in $$\mathrm{k!}$$ like so: $$\frac{\lambda^k\mathrm{e}^{-\lambda}}{k!}$$ to see the behaviour we expect.  
+Since $$\lambda^\mathrm{k}$$ is an exponential term, the output will always be larger as $$\mathrm{k}$$ grows, keeping $$\lambda$$ constant. That is the opposite of our intuition that there is _maximum_ probability when $$\lambda = \mathrm{k}$$, as the output is larger when $$\mathrm{k} = \lambda + 1$$. But now that we know about the interchangeable events assumption - and the overcounting issue - we know that we have to factor in $$\mathrm{k!}$$ like so: $$\frac{\lambda^k\mathrm{e}^{-\lambda}}{k!}$$ to see the behaviour we expect.  
 
-Now let’s check the intuition of the relationship between $$\lambda$$ and $$\mathrm{k}$$ through $$\lambda^\mathrm{k}$$, corrected for $$k!$$. For the same λ, say λ = 4, we should see $$\frac{\lambda^\mathrm{k}\mathrm{e}^{-\lambda}}{\mathrm{k!}}$$ to be smaller for values of \mathrm{k} that are far removed from 4, compared to values of k that lie close to 4. Like so: inline code: $$4^2 = 16$$ is smaller than $$4 ^ 4 = 256$$. This is consistent with the intuition of a higher likelihood of \mathrm{k} when it’s near the expectation. The image below shows this relationship more generally, where you see that the output is larger as \mathrm{k} approaches $$\lambda$$.  
+Now let’s check the intuition of the relationship between $$\lambda$$ and $$\mathrm{k}$$ through $$\lambda^\mathrm{k}$$, corrected for $$k!$$. For the same $$\lambda$$, say $$\lambda$$ = 4, we should see $$\frac{\lambda^\mathrm{k}\mathrm{e}^{-\lambda}}{\mathrm{k!}}$$ to be smaller for values of $$\mathrm{k}$$ that are far removed from 4, compared to values of $$\mathrm{k}$$ that lie close to 4. Like so: inline code: $$4^2 = 16$$ is smaller than $$4 ^ 4 = 256$$. This is consistent with the intuition of a higher likelihood of $$\mathrm{k}$$ when it’s near the expectation. The image below shows this relationship more generally, where you see that the output is larger as $$\mathrm{k}$$ approaches $$\lambda$$.  
 
 ![λ ^ k](lambda_to_k_light.png){: .light}  
 ![λ ^ k](lambda_to_k_dark.png){: .dark}  
 
 ## The Assumptions  
-First, let’s clarify the difference between a *Poisson process*, and the *Poisson distribution*. The process is a stochastic continuous-time model of points happening in given interval: 1D, a line; 2D, an area, or higher dimensions. We, data scientists, most often deal with the one-dimensional case, where the “line” is time, and the points are the events of interest - I dare to say.  
+First, let's get one thing off the table: the difference between a *Poisson process*, and the *Poisson distribution*. The process is a stochastic continuous-time model of points happening in given interval: 1D, a line; 2D, an area, or higher dimensions. We, data scientists, most often deal with the one-dimensional case, where the “line” is time, and the points are the events of interest - I dare to say.  
 
 These are the assumptions of the Poisson process:  
 1. **The occurence of one event does not affect the probability of a second event.** Think of our seller going on to list another item tomorrow indifferently of having done so already today, or the one from five days ago for that matter.  The point here is that there is no memory between events. Nothing links them directly.  
 3. **The average rate at which events occur, is independent of any occurrence.** Similarly to (1), no event in the past, nor future, has any effect on the levels on $$\lambda$$ — it’s constant during the observed timeframe. The parallel to our example is that no past listing of an item encourages or discourages the seller to be more or less active at some deep idiosyncratic level, like motivation.  
 4. **Two events cannot occur at exactly the same instant.** If we were to zoom at an infinite granular level on the timescale, no two listings could have been placed simultaneously; always sequentially.  
 
-From these assumptions-no memory, constant rate, events happening alone—it follows that any interval’s number of events is Poisson-distributed with parameter $$\lambda_{t}$$ and that disjoint intervals are independent.  
+From these assumptions - no memory, constant rate, events happening alone — it follows that 1) any interval’s number of events is Poisson-distributed with parameter $$\lambda_{t}$$ and 2) that disjoint intervals are independent - two key properties that describe the Poisson process.  
  
 _A note on the distribution_  
-The distribution simply describes probabilities for various number of counts in an interval. Strictly speaking, one can use the distribution pragmatically whenever the data is nonnegative, can be unbounded on the right, has mean λ, and it reasonably models the data. It would be just convenient if the underlying process is a Poisson one, and actually justifies using the distribution.  
+The distribution simply describes probabilities for various number of counts in an interval. Strictly speaking, one can use the distribution pragmatically whenever the data is nonnegative, can be unbounded on the right, has mean $$\lambda$$, and it reasonably models the data. It would be just convenient if the underlying process is a Poisson one, and actually justifies using the distribution.  
 
 ### The marketplace example: implications  
-
 So, can we justify using the Poisson distribution for our marketplace example? Let’s open up the assumptions of a *Poisson process*, and take the test.  
 
 **Constant λ**  
@@ -115,26 +119,23 @@ _Why it may fail:_ Batch-listing, a new feature, was introduced to help the sell
 _Consequence:_ multiple listings would come online at the same time, _clumped_ together, and they would be counted simultaneously.  
 
 ### Balancing rigour and pragmatism  
-As Data Scientists on the job we may feel trapped between rigour and pragmatism, when the Poisson distribution falls short. I suggest these three things to know when to err on the side of rigour, or pragmatism:  
+As a Data Scientists on the job we may feel trapped between rigour and pragmatism. The three steps below should give you a sound foundation to decide on which side to err, when the Poisson distribution falls short:  
 1. **Pinpoint your goal:** is it inference, simulation or prediction, and is it about high-stakes output? List the worst thing that can happen, and the cost of it for the business.  
 2. **Identify the problem and solution**: why does the Poisson distribution not fit, and what can you do about it? list 2-3 solutions, including doing nothing.  
 3. **Balance gains and costs:** Will your workaround improve things, or make it worse? and at what cost: interpretability, new assumptions introduced and resources used. Does it help you in achieving your goal?  
 
-The above should give you a sound foundation on which you can build your argument and decision.  
 That said, here are some counters I use when needed.  
 
 ## When real life deviates from your model  
 Everything described so far pertains to the standard, or homogenous, Poisson process. But what if reality begs for something different?  
-Of course, you can rethink the entire approach like switching to a different distribution. But in the next section we'll cover two extensions of the Poisson distribution when the constant $$\lambda$$ assumption does not hold.  
+Of course, you can rethink the entire approach like switching to a different distribution. But in the next section we'll cover two extensions of the Poisson distribution when the constant $$\lambda$$ assumption does not hold. These are not mutually exclusive, but neither they are the same.  
 
 The two extensions are about letting $$\lambda$$ vary,
 1. **As a function of time:** a single seller whose listing rate ramps up before holidays and slows down afterward  
-2. **As a function of subprocesses:** multiple sellers listing items, each with their own $$\lambda$$ can be seen as multiple subprocesses 
-
-These are not mutually exclusively, but neither they are the same.  
+2. **As a function of subprocesses:** multiple sellers listing items, each with their own $$\lambda$$ can be seen as multiple subprocesses  
 
 ### Time-varying λ  
-The first approach extends the PMF so that for each time $$t$$, $$\lambda$$ can have its own value. Let's call this one $$\mathrm{PMF^{*}}$$.    
+The first extension allows $$\lambda$$ to have its own value for each time $$t$$. The PMF then comes  
 
 $$
 \begin{equation}  
@@ -151,10 +152,10 @@ $$
 \end{equation}
 $$  
 
-More intuitively, integrating over a particular interval $$t$$ to $$t + i$$, gives us a single number: the expected value of events over that interval. The integral will vary by each arbitrary interval, and that's what makes $$\lambda$$ change over time. To understand how that integration part works, it was helpful for me to think of it like this: if the inverval $$t$$ to $$t_1$$ integrates to 3, and $$t_1$$ to $$t_2$$ to 5, then the interval $$t$$ to $$t_2$$ integrates to $$8 = 3 + 5$$. That's the two expectations summed up and, now, the expectation of the entire interval.  
+More intuitively, integrating over interval $$t$$ to $$t + i$$, gives us a single number: the expected value of events over that interval. The integral will vary by each arbitrary interval, and that's what makes $$\lambda$$ change over time. To understand how that integration part works, it was helpful for me to think of it like this: if the interval $$t$$ to $$t_1$$ integrates to 3, and $$t_1$$ to $$t_2$$ to 5, then the interval $$t$$ to $$t_2$$ integrates to $$8 = 3 + 5$$. That's the two expectations summed up and, now, the expectation of the entire interval.  
 
 **Practical implication** 
-One may want to consider modeling the expected value of the Poisson distribution as a function of time. This will relax the assumption, and still enable you to reap off the simplicity of the Poisson distribution. In generative model notation:  
+One may want to modeling the expected value of the Poisson distribution as a function of time. For instance, to model an overall change in trend, or seasonlity.In generative model notation:  
 
 $$
 \lambda_{t} = \beta_{0} + \beta_1 \cdot time_{t}
@@ -162,18 +163,20 @@ $$
 
 $$
 y_{t} \sim \mathrm{Poisson}\bigl(\lambda_{t}\bigr)
-$$
+$$  
+
+Time may be a continuous variable, or an arbitrary function of time itself.  
 
 ### Process-varying λ: Mixed Poisson distribution  
-But then there is a gotcha. Remember when I said that $$\lambda$$ has a dual role as the mean and variance? That still applies here. Looking at the "relaxed" $$PMF^{*}$$, the only thing that changes is that $$\lambda$$ can vary freely with time. But it's still the same $$\lambda$$ that orchestrates both the expected value and the dispersion of $$PMF^{*}$$. More precisely, $$\mathbb{E}[X] = \mathrm{Var}(X)$$  still holds.  
+But then there is a gotcha. Remember when I said that $$\lambda$$ has a dual role as the mean and variance? That still applies here. Looking at the "relaxed" $$PMF^{*}$$, the only thing that changes is that $$\lambda$$ can vary freely with time. But it's still the one and only $$\lambda$$ that orchestrates both the expected value and the dispersion of the PMF. More precisely, $$\mathbb{E}[X] = \mathrm{Var}(X)$$  still holds.  
 
-There are various reasons for this constraint not to hold in reality. Model misspecification, event interdependence and unacounted for heterogeneity could be the issues at hand. I'd like to focus on the latter case, as this one justifies the Negative Binomial distribution, one of the topics I promised to open up.  
+There are various reasons for this constraint not to hold in reality. Model misspecification, event interdependence and unacounted for heterogeneity could be the issues at hand. I'd like to focus on the latter case, as it justifies the Negative Binomial distribution, one of the topics I promised to open up.  
 
 **Heterogeneity and overdispersion**   
-Imagine we are not dealing with one seller, but with 10 of them listing at different intensity levels, $$λ_i$$, $$\mathrm{i} = 1, 2, 3,..., 10$$ sellers. Then, essentially we have 10 Poisson processes going on. If we model the $$\lambda_{group}=\frac{1}{N}\sum_{i=1}^{N} \lambda_i$$ of those 10 sellers, then we simplify the mixture away. Surely can get to the expected value of all the sellers listing together, but the resulting $$\lambda_{group}$$ is naive and does not know about the original spread of $$\lambda_i$$. This will cause overdispersion, i.e., the variance is larger than mean. Practically, this leads to underestimated errors, and hence inflate the false positive rate. So how what do we do now?  
+Imagine we are not dealing with one seller, but with 10 of them listing at different intensity levels, $$λ_i$$, $$\mathrm{i} = 1, 2, 3,..., 10$$ sellers. Then, essentially we have 10 Poisson processes going on. If we model the $$\lambda_{group}=\frac{1}{N}\sum_{i=1}^{N} \lambda_i$$ of those 10 sellers, then we simplify the mixture away. Surely can get to the expected value of all the sellers listing together, but the resulting $$\lambda_{group}$$ is naive and does not know about the original spread of $$\lambda_i$$. This will lead to overdispersion and in turn, to underestimated errors. Ulimately, it inflates the false positive rate and drives poor decision-making. So how what do we do now?  
 
 **Negative Binomial: extending the Possion distribution**  
-Among the few ways one can look at the Negative Binomial distribution, one way is to see it as a compound Poisson process - sounds familiar yet (10 sellers)? That means that multiple independent Poisson processes are summed up to a single one. Mathematically, first we draw $$\lambda$$ from a Gamma distribution: $$\lambda \sim \Gamma\bigl(r,\theta\bigr)$$, then we draw the count $$\mathrm{X}$$ like: $$\mathrm{X} \| \lambda \sim \mathrm{Poisson}\bigl(\lambda\bigr)$$. Read why Gamma [here](https://en.wikipedia.org/wiki/Negative_binomial_distribution#Definitions)). The more exposing alias of the Negative binomial distributin is *Gamma-Poisson mixture distribution*, and now we know why.  
+Among the few ways one can look at the Negative Binomial distribution, one way is to see it as a compound Poisson process - 10 sellers, sounds familiar yet? That means that multiple independent Poisson processes are summed up to a single one. Mathematically, first we draw $$\lambda$$ from a Gamma distribution: $$\lambda \sim \Gamma\bigl(r,\theta\bigr)$$, then we draw the count $$\mathrm{X}$$ like: $$\mathrm{X} \| \lambda \sim \mathrm{Poisson}\bigl(\lambda\bigr)$$. Read why Gamma [here](https://en.wikipedia.org/wiki/Negative_binomial_distribution#Definitions)). The more exposing alias of the Negative binomial distributin is *Gamma-Poisson mixture distribution*, and now we know why.  
 
 Let's simulate this scenario to gain more intuition.  
 
@@ -181,20 +184,21 @@ Let's simulate this scenario to gain more intuition.
 ![gamma-poisson mixture](gamma_lambda_dark.png){: .right width="972" height="589" .w-50 .dark}
 _The distribution of $$\lambda_{i}$$ follows $$\Gamma\bigl(r,\theta\bigr)$$_  
 
-First, we draw $$\lambda_{i}$$ from a gamma distribution: $$\lambda_{i} \sim \Gamma\bigl(r,\theta\bigr)$$. Intuitively, the gamma distribution tells about the variety in the intensity e.g., listing rate amongst the sellers.  
+First, we draw $$\lambda_{i}$$ from a Gamma distribution: $$\lambda_{i} \sim \Gamma\bigl(r,\theta\bigr)$$. Intuitively, the Gamma distribution tells us about the variety in the intensity - listing rate - amongst the sellers.  
 
-On a practical note, one can instil their assumptions about the degree of heterogeneity in this step of the model. By varying the levels of heterogeneity, one can observe the impact on the final Poisson-like distribution. Doing this type of checks is common in Bayesian modeling, where the assumptions are set explicitly.  
+On a practical note, one can instil their assumptions about the degree of heterogeneity in this step of the model: _how_ different are sellers?. By varying the levels of heterogeneity, one can observe the impact on the final Poisson-like distribution. Doing this type of checks (ie., posterior predictive check), is common in Bayesian modeling, where the assumptions are set explicitly.  
 
 ![gamma-poisson mixture](gamma_poisson_light.png){: .left width="972" height="589" .w-50 .light}
 ![gamma-poisson mixture](gamma_poisson_dark.png){: .left width="972" height="589" .w-50 .dark}
 _Gamma-Poisson mixture distribution versus homogenous Poisson distribution._  
 
-In the second step, we plug the obtained $$\lambda$$ in the Poisson distribution: $$\mathrm{X} \| \lambda \sim \mathrm{Poisson}\bigl(\lambda\bigr)$$, and obtain a Poisson-like distribution that represents the summed subprocesses. Notably, this _unified_ process has a larger dispersion than what expected from a homogeneous Poisson distribution, but in line with the mixed distribution for $$\lambda$$.  
+In the second step, we plug the obtained $$\lambda$$ in the Poisson distribution: $$\mathrm{X} \| \lambda \sim \mathrm{Poisson}\bigl(\lambda\bigr)$$, and obtain a Poisson-like distribution that represents the summed subprocesses. Notably, this _unified_ process has a larger dispersion than expected from a homogeneous Poisson distribution, but it is in line with the Gamma mixture of $$\lambda$$.  
 
 <details>
   <summary>R code for Gamma-Poisson simulation</summary>  
   
-```R  
+```R
+
 N <- 100000
 shape = 2.5,
 scale = 5,

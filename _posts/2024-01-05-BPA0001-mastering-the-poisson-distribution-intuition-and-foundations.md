@@ -165,13 +165,12 @@ y_{t} \sim \mathrm{Poisson}\bigl(\lambda_{t}\bigr)
 $$
 
 ### Process-varying λ: Mixed Poisson distribution  
-
 But then there is a gotcha. Remember when I said that $$\lambda$$ has a dual role as the mean and variance? That still applies here. Looking at the "relaxed" $$PMF^{*}$$, the only thing that changes is that $$\lambda$$ can vary freely with time. But it's still the same $$\lambda$$ that orchestrates both the expected value and the dispersion of $$PMF^{*}$$. More precisely, $$\mathbb{E}[X] = \mathrm{Var}(X)$$  still holds.  
 
 There are various reasons for this constraint not to hold in reality. Model misspecification, event interdependence and unacounted for heterogeneity could be the issues at hand. I'd like to focus on the latter case, as this one justifies the Negative Binomial distribution, one of the topics I promised to open up.  
 
 **Heterogeneity and overdispersion**   
-Imagine we are not dealing with one seller, but with 10 of them listing at different intensity levels, $$λ_i$$, $$\mathrm{i} = 1, 2, 3,..., 10$$ sellers. Then, essentially we have 10 Poisson processes going on. If we model the $$\lambda_{group}=\frac{1}{N} \sum_{i=1}^{N} \lambda_i$$ of those 10 sellers, then we simplify the mixture away. Surely can get to the expected value of all the sellers listing together, but the resulting $$\lambda_{group}$$ is naive and does not know about the original spread of $$\lambda_i$$. This will cause overdispersion, i.e., the variance is larger than mean. Practically, this leads to underestimated errors, and hence inflate the false positive rate. So how what do we do now?  
+Imagine we are not dealing with one seller, but with 10 of them listing at different intensity levels, $$λ_i$$, $$\mathrm{i} = 1, 2, 3,..., 10$$ sellers. Then, essentially we have 10 Poisson processes going on. If we model the $$\lambda_{group}=\frac{1}{N}\sum_{i=1}^{N} \lambda_i$$ of those 10 sellers, then we simplify the mixture away. Surely can get to the expected value of all the sellers listing together, but the resulting $$\lambda_{group}$$ is naive and does not know about the original spread of $$\lambda_i$$. This will cause overdispersion, i.e., the variance is larger than mean. Practically, this leads to underestimated errors, and hence inflate the false positive rate. So how what do we do now?  
 
 **Negative Binomial: extending the Possion distribution**  
 Among the few ways one can look at the Negative Binomial distribution, one way is to see it as a compound Poisson process - sounds familiar yet (10 sellers)? That means that multiple independent Poisson processes are summed up to a single one. Mathematically, first we draw $$\lambda$$ from a Gamma distribution: $$\lambda \sim \Gamma\bigl(r,\theta\bigr)$$, then we draw the count $$\mathrm{X}$$ like: $$\mathrm{X} \| \lambda \sim \mathrm{Poisson}\bigl(\lambda\bigr)$$. Read why Gamma [here](https://en.wikipedia.org/wiki/Negative_binomial_distribution#Definitions)). The more exposing alias of the Negative binomial distributin is *Gamma-Poisson mixture distribution*, and now we know why.  
@@ -182,9 +181,9 @@ Let's simulate this scenario to gain more intuition.
 ![gamma-poisson mixture](gamma_lambda_dark.png){: .right width="972" height="589" .w-50 .dark}
 _The distribution of $$\lambda_{i}$$ follows $$\Gamma\bigl(r,\theta\bigr)$$_  
 
-As per the first step of the generating model, we draw $$\lambda$$ from a gamma distribution: $$\lambda \sim \Gamma\bigl(r,\theta\bigr)$$. Intuitively, the gamma distribution tells about the variety in intensity e.g., listing rate amongst the subprocesses, or sellers.  
+First, we draw $$\lambda_{i}$$ from a gamma distribution: $$\lambda_{i} \sim \Gamma\bigl(r,\theta\bigr)$$. Intuitively, the gamma distribution tells about the variety in the intensity e.g., listing rate amongst the sellers.  
 
-On a practical note, one can instill their assumptions about the degree of heterogeneity in this step of the generative model. By varying the levels of heterogeneity, one can observe the impact on the final Poisson-like distribution.  
+On a practical note, one can instil their assumptions about the degree of heterogeneity in this step of the model. By varying the levels of heterogeneity, one can observe the impact on the final Poisson-like distribution. Doing this type of checks is common in Bayesian modeling, where the assumptions are set explicitly.  
 
 ![gamma-poisson mixture](gamma_poisson_light.png){: .left width="972" height="589" .w-50 .light}
 ![gamma-poisson mixture](gamma_poisson_dark.png){: .left width="972" height="589" .w-50 .dark}
@@ -220,7 +219,7 @@ df_gamma_poisson %>%
     fill = NULL,
     y = expression("P(k)"),
     x = expression(k)
-  )
+  )  
 ```
 
 </details>  
@@ -232,7 +231,7 @@ A practical consequence of opening up to this flexibility in your assumed distri
 1. Confirm that you indeed need to extend the standard Poisson distribution. If not, then simplify to the best simplest model. A quick check on overdispersion may do for this.
 2. Pin down the estimates of the gamma mixture distribution parameters with regulating, informative, priors (think: Bayes)
 
-In my research process to write this blog I learned a lot about the connective tissue of this all: how the binomial distribution has major underpinning in the proccesses we discussed. And while I'd love to ramble on about this, I'll leave it for another post, perhaps. In the meanwhile, feel fre to share your understanding in the comments section below 👍  
+In my research process to write this blog I learned a lot about the connective tissue of this all: how the binomial distribution has major underpinning in the proccesses we discussed. And while I'd love to ramble on about this, I'll leave it for another post, perhaps. In the meanwhile, feel free to share your understanding in the comments section below 👍  
 
 ## Conclusion  
 

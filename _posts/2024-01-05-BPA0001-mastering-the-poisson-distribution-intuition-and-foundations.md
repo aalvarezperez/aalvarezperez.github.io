@@ -197,7 +197,7 @@ In the second step, we plug the obtained $$\lambda$$ in the Poisson distribution
 <details>
   <summary>R code for Gamma-Poisson simulation</summary>  
   
-```R
+```r
 N <- 100000
 shape = 2.5,
 scale = 5,
@@ -226,11 +226,11 @@ df_gamma_poisson %>%
 ```  
 
 ### Heterogeneous $$\lambda$$ and inference
-A practical consequence of opening up to this flexibility in your assumed distribution is that inference becomes harder. The 'flexibility' parameter(s) (= Gamma parameters) have to be estimated. Then, first, the parameters behave like a flexible explanator of the data, tending to overfit and explain away variance in your variable. Second, and linked to previous statement, these estimates come with their own variance, and in turn this variance reduces the power of identifying a difference in means if there is one.  
+A practical consequence of opening up to this flexibility in your assumed distribution is that inference becomes harder. More parameter(s) (= Gamma parameters) have to be estimated. Parameters behave like a flexible explanators of the data, tending to overfit and explain away variance in your variable. The more you have the better the explanation, but also the more susceptible your model is to noise in the data. That's a metaphor to variance. Higher variance reduces the power of identifying a difference in means, if there is one, because - well - it gets lost in variance.  
 
 **Countering the loss of power**
 1. Confirm that you indeed need to extend the standard Poisson distribution. If not, then simplify to the best simplest model. A quick check on overdispersion may do for this.
-2. Pin down the estimates of the gamma mixture distribution parameters with regulating, informative, priors (think: Bayes)
+2. Pin down the estimates of the gamma mixture distribution parameters with regularising, informative, priors (think: Bayes)
 
 In my research process to write this blog I learned a lot about the connective tissue of this all: how the binomial distribution has major underpinning in the proccesses we discussed. And while I'd love to ramble on about this, I'll leave it for another post, perhaps. In the meanwhile, feel free to share your understanding in the comments section below 👍  
 

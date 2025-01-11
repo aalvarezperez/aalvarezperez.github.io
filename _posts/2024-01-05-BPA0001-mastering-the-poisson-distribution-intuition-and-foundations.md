@@ -24,7 +24,7 @@ _If you know of a resource that has helped you grasp the concepts in this blog p
 1. **Examples and use cases:** Let’s walk through some use cases and sharpen the intuition I just mentioned. Along the way, the relevance of the Poisson distribution will become clear.
 2. **The foundation:** Next, let’s break down the equation into its individual components. By studying each part, we’ll uncover why the distribution works the way it does.
 3. **The assumptions:** Equipped with some formality, it will be easier to understand the assumptions that power the distribution, and at the same time set the boundaries for when it works, and when not.
-4. **When real life deviates:** Finally, let’s explore the special links that the Poisson distribution has with the Negative Binomial distribution. Understanding these relationships can deepen our understanding, and provide alternatives when the Poisson distribution is not suited for the job.
+4. **When real life deviates from the model:** Finally, let’s explore the special links that the Poisson distribution has with the Negative Binomial distribution. Understanding these relationships can deepen our understanding, and provide alternatives when the Poisson distribution is not suited for the job.
 
 ## Example in an online marketplace  
 
@@ -39,8 +39,12 @@ Over several months, we would observe a varying number of listed items by this s
 
 ### Other examples  
 
-Coming soon.
+Other things that can be modelled with a Poisson distribution are: 
+1. Sports analytics: the number of goals in a match between two teams
+2. Qeueing: customers arriving at a help desk, customer support calls
+3. Insurances: the number of claims made in a given period
 
+Each deserve to be inspected, but for the remaining of the post, we'll use the marketplace example to illustrate the inner workings of the distribution.  
 
 ## The math  
 
@@ -64,7 +68,11 @@ _The probability mass function of the Poisson distribution._
 In the context of our earlier example - a seller listing items on our platform — $$\lambda$$ represents the seller’s average monthly listings. As the expected monthly value for this seller, λ orchestrates the number of items she would list in a month. Note that $$\lambda$$ is a greek letter, so read: λ is a parameter that we can estimate from data. On the other hand, $$k$$ does not hold any information about the seller’s idiosyncratic behaviour. It’s the target value we set for the number of events that may happen to learn about its probability. 
 
 ### The dual role of $$\lambda$$ as the mean and variance  
-When I said that $$\lambda$$ orchestrates the number of monthly listings for the seller, I meant it quite literally. Namely, $$\lambda$$ is both the expected value and variance of the distribution, indifferently, for all values of $$\lambda$$. This means that the mean-to-variance ratio (index of dispersion) is always 1. To add perspective, the _normal_ distribution requires two parameters, $$\mu$$ and $$\sigma^{2}$$, the average and variance respectively, to describe the distribution. The Poisson distribution does it with just one. Having to estimate only one parameter can be beneficial for parametic inference work. Specifically, by reducing the variance of the parameter estimates. On the other hand, it can be too limiting of an assumption. Alternatives like the Negative Binomial distribution can alleviate this limitation. We’ll explore that later. We discuss both cases later.  
+When I said that $$\lambda$$ orchestrates the number of monthly listings for the seller, I meant it quite literally. Namely, $$\lambda$$ is both the expected value and variance of the distribution, indifferently, for all values of $$\lambda$$. This means that the mean-to-variance ratio (index of dispersion) is always 1.  
+
+To put this into perspective, the _normal_ distribution requires two parameters - $$\mu$$ and $$\sigma^{2}$$, the average and variance respectively - to fully describe it. The Poisson distribution achieves the same with just one.  
+
+Having to estimate only one parameter can be beneficial for parametric inference. Specifically, by reducing the variance of the model. On the other hand, it can be too limiting of an assumption. Alternatives like the Negative Binomial distribution can alleviate this limitation. We'll explore that later. We will discuss both cases later.
 
 ### Breaking down the probability mass function  
 

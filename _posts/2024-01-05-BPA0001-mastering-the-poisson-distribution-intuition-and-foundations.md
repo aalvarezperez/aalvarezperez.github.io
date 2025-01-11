@@ -194,7 +194,7 @@ In the second step, we plug the obtained $$\lambda$$ in the Poisson distribution
 <details>
   <summary>R code for Gamma-Poisson simulation</summary>  
   
-```{R}  
+```R  
 N <- 100000
 shape = 2.5,
 scale = 5,

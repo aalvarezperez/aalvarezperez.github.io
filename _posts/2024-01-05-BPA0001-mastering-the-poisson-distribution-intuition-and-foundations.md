@@ -112,7 +112,7 @@ _Consequence:_ $$\lambda$$ is not constant, leading to overdispersion (mean-to-v
 
 **Independence and memorylessness**   
 _Why it may fail:_ the propensity to list again is higher after a successful listing, or conversely, listing once depletes the stock and intervenes with the propensity of listing again.  
-_Consequence:_ two events are no longer independent, as the occurance of one informs the occurance of the other.  
+_Consequence:_ two events are no longer independent, as the occurrence of one informs the occurrence of the other.  
 
 **Simultaneous events**  
 _Why it may fail:_ Batch-listing, a new feature, was introduced to help the sellers.  

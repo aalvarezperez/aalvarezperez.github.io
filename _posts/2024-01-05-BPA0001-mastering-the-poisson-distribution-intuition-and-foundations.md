@@ -194,37 +194,6 @@ _Gamma-Poisson mixture distribution versus homogenous Poisson distribution._
 
 In the second step, we plug the obtained $$\lambda$$ in the Poisson distribution: $$\mathrm{X} \| \lambda \sim \mathrm{Poisson}\bigl(\lambda\bigr)$$, and obtain a Poisson-like distribution that represents the summed subprocesses. Notably, this _unified_ process has a larger dispersion than expected from a homogeneous Poisson distribution, but it is in line with the Gamma mixture of $$\lambda$$.  
 
-<details>
-  <summary>R code for Gamma-Poisson simulation</summary>  
-  
-```r
-N <- 100000
-shape = 2.5,
-scale = 5,
-df_gamma_poisson <- tibble(  
-  gamma_lambda = rgamma(N, shape = shape / scale, scale = scale),
-  `Homogenous Poisson` = rpois(N, lambda = shape),
-  `Gamma-Poisson` = rpois(N, lambda = gamma_lambda)
-  ) %>%
-  pivot_longer(c(`Homogenous Poisson`:`Gamma-Poisson`)) %>% 
-  count(name, value) %>% 
-  group_by(name) %>% 
-  mutate(
-    p = n/sum(n)
-  )
-
-df_gamma_poisson %>% 
-  ggplot(aes(value, p, fill = name)) + 
-  theme_adevinta() + 
-  scale_fill_adevinta('coolors2') + 
-  geom_col(position = 'identity', alpha = .9) + 
-  labs(
-    fill = NULL,
-    y = expression("P(k)"),
-    x = expression(k)
-  )
-```  
-
 ### Heterogeneous $$\lambda$$ and inference
 A practical consequence of opening up to this flexibility in your assumed distribution is that inference becomes harder. More parameter(s) (= Gamma parameters) have to be estimated. Parameters behave like a flexible explanators of the data, tending to overfit and explain away variance in your variable. The more you have the better the explanation, but also the more susceptible your model is to noise in the data. That's a metaphor to variance. Higher variance reduces the power of identifying a difference in means, if there is one, because - well - it gets lost in variance.  
 
@@ -236,22 +205,3 @@ In my research process to write this blog I learned a lot about the connective t
 
 ## Conclusion  
 The Poisson distribution is a simple distribution that nonetheless can be _just right_ to model count data. When the assumptions do not hold however, one can extend the distribution by letting the rate parameter be a function of time, or other factor, as well as assuming subprocesses that make up the count data together. This will bring the needed flexibility. But there's never free lunch: the added flexibility to your modeling increases the variance of your model and so underpins its statistical power. If your end-goal is inference, then you may want to think twice, and make explore simpler models of the data. The bayesian paradigm offers a an in-built solution to regularise estimates: informative priors. I hope you take away what you came for: a better intuition about the Poisson distribution. It would be really great to hear your thoughts about this in the comments!  
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-

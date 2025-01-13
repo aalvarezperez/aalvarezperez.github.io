@@ -180,6 +180,12 @@ Imagine we are not dealing with one seller, but with 10 of them listing at diffe
 **Negative Binomial: extending the Poisson distribution**  
 Among the few ways one can look at the Negative Binomial distribution, one way is to see it as a compound Poisson process - 10 sellers, sounds familiar yet? That means that multiple independent Poisson processes are summed up to a single one. Mathematically, first we draw $$\lambda$$ from a Gamma distribution: $$\lambda \sim \Gamma\bigl(r,\theta\bigr)$$, then we draw the count $$\mathrm{X}$$ like: $$\mathrm{X} \| \lambda \sim \mathrm{Poisson}\bigl(\lambda\bigr)$$. Read why Gamma [here](https://en.wikipedia.org/wiki/Negative_binomial_distribution#Definitions)). The more exposing alias of the Negative binomial distribution is *Gamma-Poisson mixture distribution*, and now we know why.  
 
+In one image, it is as if we would sample from plenty Poisson distributions, corresponding to each seller.  
+
+![Many Poisson distributions making up a Negative Binomial distribution.](nb_from_poisson_light.png){: .light}  
+![Many Poisson distributions making up a Negative Binomial distribution.](nb_from_poisson_dark.png){: .dark}  
+_The Negative Binomial distribution arises from many Poisson distributions._  
+
 Let's simulate this scenario to gain more intuition.  
 
 ![gamma-lambda](gamma_lambda_light.png){: .right width="972" height="589" .w-50 .light}

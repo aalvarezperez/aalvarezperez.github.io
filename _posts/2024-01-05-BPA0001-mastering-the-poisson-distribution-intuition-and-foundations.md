@@ -175,7 +175,7 @@ There are various reasons for this constraint not to hold in reality. Model miss
 **Heterogeneity and overdispersion**   
 Imagine we are not dealing with one seller, but with 10 of them listing at different intensity levels, $$λ_i$$, $$\mathrm{i} = 1, 2, 3,..., 10$$ sellers. Then, essentially we have 10 Poisson processes going on. If we model the $$\lambda_{group}=\frac{1}{N}\sum_{i=1}^{N} \lambda_i$$ of those 10 sellers, then we simplify the mixture away. Surely can get to the expected value of all the sellers listing together, but the resulting $$\lambda_{group}$$ is naive and does not know about the original spread of $$\lambda_i$$. This will lead to overdispersion and in turn, to underestimated errors. Ulimately, it inflates the false positive rate and drives poor decision-making. So how what do we do now?  
 
-**Negative Binomial: extending the Possion distribution**  
+**Negative Binomial: extending the Poisson distribution**  
 Among the few ways one can look at the Negative Binomial distribution, one way is to see it as a compound Poisson process - 10 sellers, sounds familiar yet? That means that multiple independent Poisson processes are summed up to a single one. Mathematically, first we draw $$\lambda$$ from a Gamma distribution: $$\lambda \sim \Gamma\bigl(r,\theta\bigr)$$, then we draw the count $$\mathrm{X}$$ like: $$\mathrm{X} \| \lambda \sim \mathrm{Poisson}\bigl(\lambda\bigr)$$. Read why Gamma [here](https://en.wikipedia.org/wiki/Negative_binomial_distribution#Definitions)). The more exposing alias of the Negative binomial distributin is *Gamma-Poisson mixture distribution*, and now we know why.  
 
 Let's simulate this scenario to gain more intuition.  

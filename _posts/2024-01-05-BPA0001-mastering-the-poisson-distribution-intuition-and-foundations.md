@@ -4,7 +4,7 @@ title: "Mastering the Poisson Distribution: Intuition and Foundations"
 description: "Take a dive into the math and exemplifying use cases of the Poisson distribution."
 date: 2025-01-05 08:30:00 +0100
 categories: [Foundations, Distributions]
-tags: [poisson, stats, distributions]
+tags: [statistics, datascience, poisson, negativebinomial]
 media_subpath: /assets/images/BPA0001/
 toc: true
 math: true
@@ -13,11 +13,13 @@ image:
 ---
 
 
-You’ve probably used the normal distribution one or two times too many. We all have — It’s a true statistical workhorse. But sometimes, we run into problems. For instance, when predicting or forecasting values, simulating data given a particular data generating process, or when we try to visualise model output and explain them intuitively to non-technical stakeholders. Suddenly, things don’t make much sense: can a user really have made -8 clicks on the banner? Or even, 4.3 clicks? Both are examples of how count data doesn’t behave.  
+You’ve probably used the normal distribution one or two times too many. We all have — It’s a true workhorse. But sometimes, we run into problems. For instance, when predicting or forecasting values, simulating data given a particular data generating process, or when we try to visualise model output and explain them intuitively to non-technical stakeholders. Suddenly, things don’t make much sense: can a user really have made -8 clicks on the banner? Or even, 4.3 clicks? Both are examples of how count data doesn’t behave.  
 
-I’ve found that better encapsulating the data generating process into my modelling has been key to having sensible model output. Using the Poisson distribution when it was appropriate has not only helped me convey more meaningful insights to stakeholders, but it has also enabled me do more accurate error estimates, better inference, and sound decision-making. In this post, my aim is to help you get a deep intuitive feel for the Poisson distribution by walking through example applications, and taking a dive into the foundations - the math. I hope you learn not just how it works, but also why it works, and when to apply the distribution! 
+I’ve found that better encapsulating the data generating process into my modelling has been key to having sensible model output. Using the Poisson distribution when it was appropriate has not only helped me convey more meaningful insights to stakeholders, but it has also enabled me to produce more accurate error estimates, better inference, and sound decision-making.  
 
-_If you know of a resource that has helped you grasp the concepts in this blog particularly well, you’re invited to share it in the comments!_
+In this post, my aim is to help you get a deep intuitive feel for the Poisson distribution by walking through example applications, and taking a dive into the foundations — the maths. I hope you learn not just how it works, but also why it works, and when to apply the distribution.  
+
+If you know of a resource that has helped you grasp the concepts in this blog particularly well, you’re invited to share it in the comments!  
 
 ## Outline  
 
@@ -28,21 +30,21 @@ _If you know of a resource that has helped you grasp the concepts in this blog p
 
 ## Example in an online marketplace  
 
-I chose to deep dive into the Poisson distribution because it appears frequently in my day-to-day work. Online marketplaces stand on binary user choices from two sides: a seller deciding to list an item, and a buyer deciding to make a purchase. These micro-behaviours drive supply and demand, both in the short and long term. A marketplace is born.  
+I chose to deep dive into the Poisson distribution because it frequently appears in my day-to-day work. Online marketplaces rely on binary user choices from two sides: a seller deciding to list an item and a buyer deciding to make a purchase. These micro-behaviours drive supply and demand, both in the short and long term. A marketplace is born.  
 
-Binary choices aggregate to counts —  the sum of many such decision as they occur. Attach a timeframe to this counting process, and you’ll start seeing Poisson distributions everywhere. Let’s look into a concrete example next.  
+Binary choices aggregate into counts — the sum of many such decisions as they occur. Attach a timeframe to this counting process, and you’ll start seeing Poisson distributions everywhere. Let’s explore a concrete example next.  
 
-Consider a seller on a platform. On a given month, the seller may or may not list an item for sale (a binary choice) We would only know if she did, cause then we have a measured count of the event. Nothing stops her from listing another item in the same month. If she does, we count up those events. The total could be zero for an inactive seller or, say, 120 for a very engaged seller.  
+Consider a seller on a platform. In a given month, the seller may or may not list an item for sale (a binary choice). We would only know if she did because then we’d have a measurable count of the event. Nothing stops her from listing another item in the same month. If she does, we count those events. The total could be zero for an inactive seller or, say, 120 for a highly engaged seller.  
 
-Over several months, we would observe a varying number of listed items by this seller — sometimes less, sometimes more —  hovering around an _average_ monthly listings. That is essentially a Poisson process. *When we get to the assumptions section, you’ll see what we had to assume away to make this example work.*  
+Over several months, we would observe a varying number of listed items by this seller — sometimes fewer, sometimes more — hovering around an average monthly listing rate. That is essentially a Poisson process. When we get to the assumptions section, you’ll see what we had to assume away to make this example work.  
 
 ### Other examples  
-Other things that can be modelled with a Poisson distribution are: 
-1. Sports analytics: the number of goals in a match between two teams
-2. Qeueing: customers arriving at a help desk, customer support calls
-3. Insurances: the number of claims made in a given period
+Other phenomena that can be modelled with a Poisson distribution include:  
+- Sports analytics: The number of goals scored in a match between two teams.
+- Queuing: Customers arriving at a help desk or customer support calls.
+- Insurance: The number of claims made within a given period.
 
-Each deserve to be inspected, but for the remaining of the post, we'll use the marketplace example to illustrate the inner workings of the distribution.  
+Each of these examples warrants further inspection, but for the remainder of this post, we’ll use the marketplace example to illustrate the inner workings of the distribution.  
 
 ## The math  
 I find opening up the probability mass function (PMF) of distributions helpful to understanding why things work as they do. The PMF of the Poisson distribution goes like:  
@@ -62,7 +64,7 @@ _The probability mass function of the Poisson distribution._
 
 
 ### Contextualising λ and k: the marketplace example  
-In the context of our earlier example - a seller listing items on our platform — $$\lambda$$ represents the seller’s average monthly listings. As the expected monthly value for this seller, λ orchestrates the number of items she would list in a month. Note that $$\lambda$$ is a greek letter, so read: λ is a parameter that we can estimate from data. On the other hand, $$k$$ does not hold any information about the seller’s idiosyncratic behaviour. It’s the target value we set for the number of events that may happen to learn about its probability. 
+In the context of our earlier example - a seller listing items on our platform — $$\lambda$$ represents the seller’s average monthly listings. As the expected monthly value for this seller, λ orchestrates the number of items she would list in a month. Note that $$\lambda$$ is a greek letter, so read: $$\lambda$$ is a parameter that we can estimate from data. On the other hand, $$k$$ does not hold any information about the seller’s idiosyncratic behaviour. It’s the target value we set for the number of events that may happen to learn about its probability. 
 
 ### The dual role of $$\lambda$$ as the mean and variance  
 When I said that $$\lambda$$ orchestrates the number of monthly listings for the seller, I meant it quite literally. Namely, $$\lambda$$ is both the expected value and variance of the distribution, indifferently, for all values of $$\lambda$$. This means that the mean-to-variance ratio (index of dispersion) is always 1.  

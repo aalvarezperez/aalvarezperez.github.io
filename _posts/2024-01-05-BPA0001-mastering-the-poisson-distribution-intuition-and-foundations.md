@@ -4,7 +4,7 @@ title: "Mastering the Poisson Distribution: Intuition and Foundations"
 description: "Take a dive into the math and exemplifying use cases of the Poisson distribution."
 date: 2025-01-05 08:30:00 +0100
 categories: [Foundations, Distributions]
-tags: [poisson, stats, distributions]
+tags: [statistics, datascience, poisson, negativebinomial]
 media_subpath: /assets/images/BPA0001/
 toc: true
 math: true
@@ -13,11 +13,13 @@ image:
 ---
 
 
-You’ve probably used the normal distribution one or two times too many. We all have — It’s a true statistical workhorse. But sometimes, we run into problems. For instance, when predicting or forecasting values, simulating data given a particular data generating process, or when we try to visualise model output and explain them intuitively to non-technical stakeholders. Suddenly, things don’t make much sense: can a user really have made -8 clicks on the banner? Or even, 4.3 clicks? Both are examples of how count data doesn’t behave.  
+You’ve probably used the normal distribution one or two times too many. We all have — It’s a true workhorse. But sometimes, we run into problems. For instance, when predicting or forecasting values, simulating data given a particular data generating process, or when we try to visualise model output and explain them intuitively to non-technical stakeholders. Suddenly, things don’t make much sense: can a user really have made -8 clicks on the banner? Or even, 4.3 clicks? Both are examples of how count data doesn’t behave.  
 
-I’ve found that better encapsulating the data generating process into my modelling has been key to having sensible model output. Using the Poisson distribution when it was appropriate has not only helped me convey more meaningful insights to stakeholders, but it has also enabled me do more accurate error estimates, better inference, and sound decision-making. In this post, my aim is to help you get a deep intuitive feel for the Poisson distribution by walking through example applications, and taking a dive into the foundations - the math. I hope you learn not just how it works, but also why it works, and when to apply the distribution! 
+I’ve found that better encapsulating the data generating process into my modelling has been key to having sensible model output. Using the Poisson distribution when it was appropriate has not only helped me convey more meaningful insights to stakeholders, but it has also enabled me to produce more accurate error estimates, better inference, and sound decision-making.  
 
-_If you know of a resource that has helped you grasp the concepts in this blog particularly well, you’re invited to share it in the comments!_
+In this post, my aim is to help you get a deep intuitive feel for the Poisson distribution by walking through example applications, and taking a dive into the foundations — the maths. I hope you learn not just how it works, but also why it works, and when to apply the distribution.  
+
+If you know of a resource that has helped you grasp the concepts in this blog particularly well, you’re invited to share it in the comments!  
 
 ## Outline  
 
@@ -28,21 +30,21 @@ _If you know of a resource that has helped you grasp the concepts in this blog p
 
 ## Example in an online marketplace  
 
-I chose to deep dive into the Poisson distribution because it appears frequently in my day-to-day work. Online marketplaces stand on binary user choices from two sides: a seller deciding to list an item, and a buyer deciding to make a purchase. These micro-behaviours drive supply and demand, both in the short and long term. A marketplace is born.  
+I chose to deep dive into the Poisson distribution because it frequently appears in my day-to-day work. Online marketplaces rely on binary user choices from two sides: a seller deciding to list an item and a buyer deciding to make a purchase. These micro-behaviours drive supply and demand, both in the short and long term. A marketplace is born.  
 
-Binary choices aggregate to counts —  the sum of many such decision as they occur. Attach a timeframe to this counting process, and you’ll start seeing Poisson distributions everywhere. Let’s look into a concrete example next.  
+Binary choices aggregate into counts — the sum of many such decisions as they occur. Attach a timeframe to this counting process, and you’ll start seeing Poisson distributions everywhere. Let’s explore a concrete example next.  
 
-Consider a seller on a platform. On a given month, the seller may or may not list an item for sale (a binary choice) We would only know if she did, cause then we have a measured count of the event. Nothing stops her from listing another item in the same month. If she does, we count up those events. The total could be zero for an inactive seller or, say, 120 for a very engaged seller.  
+Consider a seller on a platform. In a given month, the seller may or may not list an item for sale (a binary choice). We would only know if she did because then we’d have a measurable count of the event. Nothing stops her from listing another item in the same month. If she does, we count those events. The total could be zero for an inactive seller or, say, 120 for a highly engaged seller.  
 
-Over several months, we would observe a varying number of listed items by this seller — sometimes less, sometimes more —  hovering around an _average_ monthly listings. That is essentially a Poisson process. *When we get to the assumptions section, you’ll see what we had to assume away to make this example work.*  
+Over several months, we would observe a varying number of listed items by this seller — sometimes fewer, sometimes more — hovering around an average monthly listing rate. That is essentially a Poisson process. When we get to the assumptions section, you’ll see what we had to assume away to make this example work.  
 
 ### Other examples  
-Other things that can be modelled with a Poisson distribution are: 
-1. Sports analytics: the number of goals in a match between two teams
-2. Qeueing: customers arriving at a help desk, customer support calls
-3. Insurances: the number of claims made in a given period
+Other phenomena that can be modelled with a Poisson distribution include:  
+- Sports analytics: The number of goals scored in a match between two teams.
+- Queuing: Customers arriving at a help desk or customer support calls.
+- Insurance: The number of claims made within a given period.
 
-Each deserve to be inspected, but for the remaining of the post, we'll use the marketplace example to illustrate the inner workings of the distribution.  
+Each of these examples warrants further inspection, but for the remainder of this post, we’ll use the marketplace example to illustrate the inner workings of the distribution.  
 
 ## The math  
 I find opening up the probability mass function (PMF) of distributions helpful to understanding why things work as they do. The PMF of the Poisson distribution goes like:  
@@ -62,7 +64,7 @@ _The probability mass function of the Poisson distribution._
 
 
 ### Contextualising λ and k: the marketplace example  
-In the context of our earlier example - a seller listing items on our platform — $$\lambda$$ represents the seller’s average monthly listings. As the expected monthly value for this seller, λ orchestrates the number of items she would list in a month. Note that $$\lambda$$ is a greek letter, so read: λ is a parameter that we can estimate from data. On the other hand, $$k$$ does not hold any information about the seller’s idiosyncratic behaviour. It’s the target value we set for the number of events that may happen to learn about its probability. 
+In the context of our earlier example - a seller listing items on our platform — $$\lambda$$ represents the seller’s average monthly listings. As the expected monthly value for this seller, λ orchestrates the number of items she would list in a month. Note that $$\lambda$$ is a greek letter, so read: $$\lambda$$ is a parameter that we can estimate from data. On the other hand, $$k$$ does not hold any information about the seller’s idiosyncratic behaviour. It’s the target value we set for the number of events that may happen to learn about its probability. 
 
 ### The dual role of $$\lambda$$ as the mean and variance  
 When I said that $$\lambda$$ orchestrates the number of monthly listings for the seller, I meant it quite literally. Namely, $$\lambda$$ is both the expected value and variance of the distribution, indifferently, for all values of $$\lambda$$. This means that the mean-to-variance ratio (index of dispersion) is always 1.  
@@ -112,7 +114,7 @@ _Consequence:_ $$\lambda$$ is not constant, leading to overdispersion (mean-to-v
 
 **Independence and memorylessness**   
 _Why it may fail:_ the propensity to list again is higher after a successful listing, or conversely, listing once depletes the stock and intervenes with the propensity of listing again.  
-_Consequence:_ two events are no longer independent, as the occurance of one informs the occurance of the other.  
+_Consequence:_ two events are no longer independent, as the occurrence of one informs the occurrence of the other.  
 
 **Simultaneous events**  
 _Why it may fail:_ Batch-listing, a new feature, was introduced to help the sellers.  
@@ -170,13 +172,13 @@ Time may be a continuous variable, or an arbitrary function of time itself.
 ### Process-varying λ: Mixed Poisson distribution  
 But then there is a gotcha. Remember when I said that $$\lambda$$ has a dual role as the mean and variance? That still applies here. Looking at the "relaxed" $$PMF^{*}$$, the only thing that changes is that $$\lambda$$ can vary freely with time. But it's still the one and only $$\lambda$$ that orchestrates both the expected value and the dispersion of the PMF. More precisely, $$\mathbb{E}[X] = \mathrm{Var}(X)$$  still holds.  
 
-There are various reasons for this constraint not to hold in reality. Model misspecification, event interdependence and unacounted for heterogeneity could be the issues at hand. I'd like to focus on the latter case, as it justifies the Negative Binomial distribution, one of the topics I promised to open up.  
+There are various reasons for this constraint not to hold in reality. Model misspecification, event interdependence and unaccounted for heterogeneity could be the issues at hand. I'd like to focus on the latter case, as it justifies the Negative Binomial distribution, one of the topics I promised to open up.  
 
 **Heterogeneity and overdispersion**   
 Imagine we are not dealing with one seller, but with 10 of them listing at different intensity levels, $$λ_i$$, $$\mathrm{i} = 1, 2, 3,..., 10$$ sellers. Then, essentially we have 10 Poisson processes going on. If we model the $$\lambda_{group}=\frac{1}{N}\sum_{i=1}^{N} \lambda_i$$ of those 10 sellers, then we simplify the mixture away. Surely can get to the expected value of all the sellers listing together, but the resulting $$\lambda_{group}$$ is naive and does not know about the original spread of $$\lambda_i$$. This will lead to overdispersion and in turn, to underestimated errors. Ulimately, it inflates the false positive rate and drives poor decision-making. So how what do we do now?  
 
-**Negative Binomial: extending the Possion distribution**  
-Among the few ways one can look at the Negative Binomial distribution, one way is to see it as a compound Poisson process - 10 sellers, sounds familiar yet? That means that multiple independent Poisson processes are summed up to a single one. Mathematically, first we draw $$\lambda$$ from a Gamma distribution: $$\lambda \sim \Gamma\bigl(r,\theta\bigr)$$, then we draw the count $$\mathrm{X}$$ like: $$\mathrm{X} \| \lambda \sim \mathrm{Poisson}\bigl(\lambda\bigr)$$. Read why Gamma [here](https://en.wikipedia.org/wiki/Negative_binomial_distribution#Definitions)). The more exposing alias of the Negative binomial distributin is *Gamma-Poisson mixture distribution*, and now we know why.  
+**Negative Binomial: extending the Poisson distribution**  
+Among the few ways one can look at the Negative Binomial distribution, one way is to see it as a compound Poisson process - 10 sellers, sounds familiar yet? That means that multiple independent Poisson processes are summed up to a single one. Mathematically, first we draw $$\lambda$$ from a Gamma distribution: $$\lambda \sim \Gamma\bigl(r,\theta\bigr)$$, then we draw the count $$\mathrm{X}$$ like: $$\mathrm{X} \| \lambda \sim \mathrm{Poisson}\bigl(\lambda\bigr)$$. Read why Gamma [here](https://en.wikipedia.org/wiki/Negative_binomial_distribution#Definitions)). The more exposing alias of the Negative binomial distribution is *Gamma-Poisson mixture distribution*, and now we know why.  
 
 Let's simulate this scenario to gain more intuition.  
 
@@ -204,4 +206,8 @@ A practical consequence of opening up to this flexibility in your assumed distri
 In my research process to write this blog I learned a lot about the connective tissue of this all: how the binomial distribution has major underpinning in the proccesses we discussed. And while I'd love to ramble on about this, I'll leave it for another post, perhaps. In the meanwhile, feel free to share your understanding in the comments section below 👍  
 
 ## Conclusion  
-The Poisson distribution is a simple distribution that nonetheless can be _just right_ to model count data. When the assumptions do not hold however, one can extend the distribution by letting the rate parameter be a function of time, or other factor, as well as assuming subprocesses that make up the count data together. This will bring the needed flexibility. But there's never free lunch: the added flexibility to your modeling increases the variance of your model and so underpins its statistical power. If your end-goal is inference, then you may want to think twice, and make explore simpler models of the data. The bayesian paradigm offers a an in-built solution to regularise estimates: informative priors. I hope you take away what you came for: a better intuition about the Poisson distribution. It would be really great to hear your thoughts about this in the comments!  
+The Poisson distribution is a simple distribution that can be highly suitable for modelling count data. However, when the assumptions do not hold, one can extend the distribution by allowing the rate parameter to vary as a function of time or other factors, or by assuming subprocesses that collectively make up the count data. This added flexibility can address the limitations, but it comes at a cost: increased flexibility in your modelling raises the variance and, consequently, undermines the statistical power of your model.  
+
+If your end goal is inference, you may want to think twice and consider exploring simpler models for the data. Alternatively, switch to the Bayesian paradigm and leverage its built-in solution to regularise estimates: informative priors.  
+
+I hope this has given you what you came for - a better intuition about the Poisson distribution. I'd love to hear your thoughts about this in the comments!

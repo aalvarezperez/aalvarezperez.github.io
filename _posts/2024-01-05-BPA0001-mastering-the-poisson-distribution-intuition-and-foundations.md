@@ -4,7 +4,7 @@ title: "Mastering the Poisson Distribution: Intuition and Foundations"
 description: "Take a dive into the math and exemplifying use cases of the Poisson distribution."
 date: 2025-01-05 08:30:00 +0100
 categories: [Foundations, Distributions]
-tags: [statistics, datascience, poisson, negativebinomial]
+tags: [statistics, datascience, poisson, negative binomial]
 media_subpath: /assets/images/BPA0001/
 toc: true
 math: true

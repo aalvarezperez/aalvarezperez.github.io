@@ -209,7 +209,7 @@ A practical consequence of opening up to this flexibility in your assumed distri
 1. Confirm that you indeed need to extend the standard Poisson distribution. If not, then simplify to the best simplest model. A quick check on overdispersion may do for this.
 2. Pin down the estimates of the gamma mixture distribution parameters with regularising, informative, priors (think: Bayes)
 
-In my research process to write this blog I learned a lot about the connective tissue of this all: how the binomial distribution has major underpinning in the processes we discussed. And while I'd love to ramble on about this, I'll leave it for another post, perhaps. In the meanwhile, feel free to share your understanding in the comments section below 👍  
+In my research process to write this blog I learned a lot about the connective tissue of this all: how the binomial distribution has major underpinning in the processes we discussed. And while I'd love to ramble on about this, I'll leave it for another post, perhaps. In the meanwhile, feel free to share your understanding in the comments section below.
 
 ## Conclusion  
 The Poisson distribution is a simple distribution that can be highly suitable for modelling count data. However, when the assumptions do not hold, one can extend the distribution by allowing the rate parameter to vary as a function of time or other factors, or by assuming subprocesses that collectively make up the count data. This added flexibility can address the limitations, but it comes at a cost: increased flexibility in your modelling raises the variance and, consequently, undermines the statistical power of your model.  
@@ -217,3 +217,7 @@ The Poisson distribution is a simple distribution that can be highly suitable fo
 If your end goal is inference, you may want to think twice and consider exploring simpler models for the data. Alternatively, switch to the Bayesian paradigm and leverage its built-in solution to regularise estimates: informative priors.  
 
 I hope this has given you what you came for - a better intuition about the Poisson distribution. I'd love to hear your thoughts about this in the comments!
+
+
+> You can stay up to date with my writing by following me on [Medium](https://medium.com/@alejandroalvarezprez/subscribe), or just visiting here often :)
+{.prompt-info}

@@ -219,5 +219,5 @@ If your end goal is inference, you may want to think twice and consider explorin
 I hope this has given you what you came for - a better intuition about the Poisson distribution. I'd love to hear your thoughts about this in the comments!
 
 
-> You can stay up to date with my writing by following me on [Medium](https://medium.com/@alejandroalvarezprez/subscribe), or just visiting here often :)
+> You can stay up to date with my writing by following me on [Medium](https://medium.com/@alejandroalvarezprez/subscribe), or just visiting here often :)  
 {.prompt-info}

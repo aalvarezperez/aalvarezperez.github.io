@@ -164,12 +164,7 @@ kramdown:
 collections:
   tabs:
     output: true
-    sort_by:
-    - about.md
-    - coming soon.md
-    - categories.md
-    - tags.md
-    - archives.md
+    sort_by: order
 
 defaults:
   - scope:

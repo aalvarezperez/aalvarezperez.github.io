@@ -1,6 +1,6 @@
-title: Résumé
-name: YOUR NAME
-jobtitle: Your Job Title
+title: Resume
+name: Alejandro Alvarez Perez
+jobtitle: Lead Data Scientist
 contact:
   - icon: fa-envelope
     text: youremail@example.com
@@ -13,13 +13,13 @@ contact:
     text: your-github
     link: https://github.com/crispgm/resume
 education:
-  - university: Your First University
+  - university: Behavioural Data Science
     duration: Jul 2011 - Dec 2012
-    location: Consectetur adipiscing elit
+    location: University of Amsterdam
     major: Lorem ipsum dolor sit amet
   - university: Your Second University
     duration: Aug 2007 - Jun 2011
-    location: Ut enim ad minim veniam
+    location: University of Amsterdam
     major: Quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat
 skills:
   - title: Skill Group 1
@@ -51,5 +51,9 @@ projects:
 languages:
   - name: English
     proficiency: Work proficiency
-  - name: Mandarin Chinese
+  - name: Spanish
     proficiency: Native
+  - name: Dutch
+    proficiency: Native
+  - name: French
+    proficiency: Advanced

@@ -3,7 +3,6 @@
 
 
 $breakpoint: 48rem;
-$background-color: #fff;
 
 {% case site.color %}
 {% when 'orange' %}
@@ -29,3 +28,4 @@ $secondary-color:  #adb5bd;
   .bundle
 {%- endif -%}
 ';
+

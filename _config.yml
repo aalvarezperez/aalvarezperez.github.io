@@ -14,9 +14,9 @@ timezone: Europe/Amsterdam
 # jekyll-seo-tag settings › https://github.com/jekyll/jekyll-seo-tag/blob/master/docs/usage.md
 # ↓ --------------------------
 
-title: Alejandro Alvarez # the main title
+title: "Alejandro Alvarez" # the main title
 
-tagline: Causal Inference, Data science and Marketplaces
+tagline: "Causal Inference<br>Experimentation<br>and Marketplaces"
 
 description: >- # used by seo meta and the atom feed
   A place where I rumble about the foundations and applications of causal inference, experimentation and machine learning in my professional experience. Tag along to follow on data science topics with applications in pricing, retention, trust and more, in online marketplaces and beyond.

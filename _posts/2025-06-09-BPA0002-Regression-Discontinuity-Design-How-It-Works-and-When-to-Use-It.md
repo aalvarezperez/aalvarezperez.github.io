@@ -2,7 +2,7 @@
 slug: "Regression-Discontinuity-Design-How-It-Works-and-When-to-Use-It"
 title: "Regression Discontinuity Design: How It Works and When to Use It"
 description: "From core ideas to real-world analysis: how RDD causal inference works, how to run it, and how to get it right."
-date: 2025-06-08 08:30:00 +0100
+date: 2025-06-09 08:30:00 +0100
 categories: [ Causal Inference, Techniques ]
 tags: [Causal Inference, Identification, Regression Discontinuity, Marketplaces]
 media_subpath: /assets/images/BPA0002/

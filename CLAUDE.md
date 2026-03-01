@@ -42,7 +42,7 @@ title: "Full Title"
 description: "One-line description"
 date: YYYY-MM-DD 08:30:00 +0100
 categories: [Category1, Category2]
-tags: [tag1, tag2]
+tags: [lowercase, multi word tags]
 media_subpath: /assets/images/BPAnnnn/
 toc: true
 math: true
@@ -51,7 +51,52 @@ image:
 ---
 ```
 
-Post IDs follow `BPA0001`, `BPA0002`, etc. Images support light/dark variants (`_light.png` / `_dark.png`; Chirpy handles the switching).
+Post IDs follow `BPA0001`, `BPA0002`, etc. Tags are always lowercase. Categories max two levels: `[Top, Sub]`.
+
+Optional front matter: `pin: true` (stick to homepage), `mermaid: true` (diagrams), `render_with_liquid: false` (if post contains `{% %}` literals).
+
+### Chirpy Markdown Features
+
+**Images:**
+- Light/dark variants: `![alt](img_light.png){: .light }` and `![alt](img_dark.png){: .dark }`
+- Sizing: `![alt](img.png){: w="700" h="400" }`
+- Shadow: `{: .shadow }` (good for screenshots)
+- Position: `{: .normal }`, `{: .left }`, `{: .right }`
+- LQIP placeholder: `{: lqip="/path/to/lqip" }`
+- Caption: add `_italicized text_` on the line below the image
+- Preview image should be 1200x630 (1.91:1 aspect ratio)
+
+**Math** (requires `math: true`):
+- Block: `$$ ... $$` with blank lines above and below
+- Inline: `$ ... $`
+- Equation refs: `\label{eq:name}` and `\eqref{eq:name}`
+- In lists, escape as `\$$ ... $$`
+
+**Mermaid diagrams** (requires `mermaid: true`):
+````
+```mermaid
+graph LR
+  A --> B
+```
+````
+
+**Prompts/callouts:**
+```
+> Content here
+{: .prompt-tip }    # also: .prompt-info, .prompt-warning, .prompt-danger
+```
+
+**Code blocks:**
+- Filename label: `{: file="path/to/file" }`
+- Hide line numbers: `{: .nolineno }`
+- Liquid code: wrap with `{% raw %}...{% endraw %}`
+
+**Filepath highlight:** `` `/path/to/file`{: .filepath} ``
+
+**Embeds:**
+- YouTube: `{% include embed/youtube.html id='VIDEO_ID' %}`
+- Video file: `{% include embed/video.html src='URL' %}`
+- Audio file: `{% include embed/audio.html src='URL' %}`
 
 ## Available Tools
 

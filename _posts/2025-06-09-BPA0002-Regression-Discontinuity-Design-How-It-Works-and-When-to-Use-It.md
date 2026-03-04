@@ -1,6 +1,6 @@
 ---
 slug: "Regression-Discontinuity-Design-How-It-Works-and-When-to-Use-It"
-title: "Regression Discontinuity Design: How It Works and When to Use It (Part 1)"
+title: "Regression Discontinuity Design (1/2): Theory and Intuition"
 description: "The core ideas behind RDD: how the continuity assumption works, why the running variable acts as an instrument, and what LATE really means."
 date: 2025-06-09 08:30:00 +0100
 categories: [ Causal Inference, Techniques ]

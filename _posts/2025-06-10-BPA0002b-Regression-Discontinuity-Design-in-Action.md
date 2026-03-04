@@ -1,6 +1,6 @@
 ---
 slug: "Regression-Discontinuity-Design-in-Action"
-title: "Regression Discontinuity Design in Action: Search Ranking and Listing Performance"
+title: "Regression Discontinuity Design (2/2): A Marketplace Case Study"
 description: "A real-world RDD analysis on marketplace search rankings: practical setup, modelling choices, placebo testing, and lessons learned."
 date: 2025-06-10 08:30:00 +0100
 categories: [Causal Inference, Techniques]

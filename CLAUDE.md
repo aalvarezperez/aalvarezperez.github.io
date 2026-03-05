@@ -154,9 +154,11 @@ Data scientists and analysts who want:
 When reviewing my writing, focus on these blind spots:
 
 ### 1. Conciseness (Primary)
-- **Distinguish tangents from texture** — My writing is a coffee-read; some sentences exist for rhythm, warmth, and personality, not information. That's the style, not a problem.
+- **Distinguish tangents, texture, and perspective** — My writing is a coffee-read; some sentences exist for rhythm, warmth, and personality, not information. That's the style, not a problem.
 - **Cut-worthy**: paragraphs that re-explain the same concept in different words; detours the reader can't connect back to the argument; setup longer than its payoff
 - **Texture (leave alone)**: rhetorical beats, anecdote closings, personality asides, transitional warmth
+- **Perspective (keep, may tighten)**: text after an example that extracts a principle, reframes the takeaway, or adds a conceptual layer the example alone does not convey. Test: "Does this passage express an idea the preceding text does NOT?" If yes, it's perspective, not redundancy.
+- **Verification before cutting**: re-read the flagged passage and name the distinct idea it adds. If you can name one, downgrade from cut to tighten.
 - **The test**: does it make the reader want to keep going, or skim? If it keeps them engaged, it stays.
 - **Watch for over-explanation** — I tend to explain the same concept multiple ways (this is the real blind spot, not conversational filler)
 - **Target length**: 3,500-5,000 words is ideal; 8,000+ means something should be split or cut

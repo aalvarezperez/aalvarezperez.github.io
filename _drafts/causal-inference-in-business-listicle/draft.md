@@ -6,7 +6,7 @@ What's different is the gravity of the decisions that lean on the analysis: not 
 
 Take product discovery. Before building and shipping, many assumptions need validation at several steps. Aiming to nail each answer with perfect causal inference; for what? Moving up one square on a board of many relevant, even *necessary*, but on their own *insufficient* decisions. The risk is already spread, hedged, over many decisions, thanks to a process that values incremental evidence, learning and iterations.
 
-Simulataneously, causal inference comes with material opportunity cost: the rigouris requires delays time-to-impact, while there could have been a project waiting for you where this rigour was actually needed to improve the decision quality (reduce risk, increase reliability)
+Simultaneously, causal inference comes with material opportunity cost: the rigour requires delays time-to-impact, while there could have been a project waiting for you where this rigour was actually needed to improve the decision quality (reduce risk, increase reliability)
 
 **Final vs. constructive decisions** is my go-to framing to make this idea simple:
 
@@ -63,19 +63,19 @@ If the answer to the so-what question makes a lot of sense, not only to you, but
 
 Magical.
 
-## If you can solve it easier without causal inferece, then do it
+## If you can solve it easier without causal inference, then do it
 
 There's no cookie-cutter causal inference. Methods become canonical because we've mapped their assumptions well; not because using them is mechanical. Every situation can violate those assumptions in its own way, and each one deserves full rigor.
 
 The challenge with that though, is that we can't justify doing so for all of them; resource-wise. 
 
-That's when applying causal inference becomes an economical excersise: *how much of the resources shall we put in, so that we reach the desired outcome with some necessary level of confidence?* 
+That's when applying causal inference becomes an economical exercise: *how much of the resources shall we put in, so that we reach the desired outcome with some necessary level of confidence?* 
 
 Ask yourself that question next time.
 
 Luckily, every analysis needs not to be as rigorous as a full causal inference project to make the return of investment tip over to the positive side. 
 
-The alternatives: common sense, domain knowlegde, and associative analysis, derive good-enough answers too.
+The alternatives: common sense, domain knowledge, and associative analysis, derive good-enough answers too.
 
 It definitely hurts a bit to say this; principled and rigorous me hates me now. But I've learned that it pays to approach the trade-off as a strategic choice.
 
@@ -105,7 +105,7 @@ But then, while the team jumps onto the next sprint, the product management stil
 You're happy because learnings -> iterations is exactly the mentality you are trying to foster. 
 But you're also in pain for at least three reasons:
 
-1. **Lack of exchangability:** you know that the users that went on to use the feature are a highly self-selected set. Contrasting them against non-users. Really?
+1. **Lack of exchangeability:** you know that the users that went on to use the feature are a highly self-selected set. Contrasting them against non-users. Really?
 2. **Interacting effects**: assume that one segment was indeed impacted more than others. Now recall the first point: we are conditioning on highly engaged users. It may be that that segment displayed a higher impact merely because the users were also highly engaged. The same segments may not show that differential impact when we consider lower engaged users. But you can't know. You're working data is skewed towards highly engaged users only. 
 3. **Collider bias:** in a worse case, conditioning on high engagement may render the relationship between segments and the outcome of interest even negative. The analysis would steer the team to the wrong direction.
 
@@ -151,7 +151,7 @@ Whenever I feel the pull of a clean synth control for a question nobody asked, t
 
 The methods come from studying them. The judgment comes from burning months on projects that never needed them.
 
-Rigor feels good. Impact feels better. Most days, the second one is what you're being paid for.
+Rigor feels good, but impact feels better. Most days, the second one is what you're being paid for.
 
 If one of these saves you a sprint next week, or an argument with a PM, that's already a win; and these wins compound. Rigor shows up when it matters. The rest of your time goes to things that also matter.
 

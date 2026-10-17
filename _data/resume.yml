@@ -1,7 +1,7 @@
 title: Resume
 name: Alejandro Alvarez Pérez
 jobtitle: Staff Data Scientist | Causal Inference and Experimentation
-headline: Staff Data Scientist specialised in causal inference, experimentation, and product analytics. I turn ambiguous questions into analytical frameworks that move decisions. 8+ years across marketplace product analytics and B2B SaaS in European and global markets.
+headline: Staff Data Scientist specialised in causal inference and experimentation. I turn ambiguous questions into analytical frameworks that move decisions. 8+ years of data science across marketplaces and B2B SaaS in European and global markets.
 contact:
   - icon: fab fa-linkedin
     text: LinkedIn profile
@@ -96,7 +96,7 @@ experience:
     logo: /assets/images/resume/manychat_logo.jpeg
     description:
       - 'Owned the experimentation maturity strategy. Led a structured POC with a cross-functional panel to onboard Eppo as the company-wide platform; democratised experimentation across the product organisation (<a href="https://towardsdatascience.com/picking-an-experimentation-platform-a-retrospective/" target="_blank" rel="noopener">article</a>).'
-      - "Informed leadership's global rollout decision on a new pricing model. Built a synthetic experiment pipeline (Abadie &amp; Zhao, 2021) across geo-level holdouts."
+      - "Informed leadership's global rollout decision on a new pricing model. Built a synthetic experiment pipeline (Abadie &amp; Zhao, 2026) across geo-level holdouts."
       - "Established an evidence-based product discovery process with a cross-functional squad, scoring rubric, and hypothesis tracker. Redirected the H2 roadmap from feature-building to solving the real adoption barrier."
       # - "Reshaped 2026 Inbox team OKRs by sizing a $10M ARR opportunity. Multi-state survival models showed consistency; not intensity; halves churn risk."
       - "Gave the company its first method to estimate long-term experiment impact from short-term data (Athey et al. 2024)."

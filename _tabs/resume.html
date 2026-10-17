@@ -1,0 +1,15 @@
+---
+# the default layout is 'page'
+title: Resume
+icon: fas fa-file-lines
+order: 5
+description: "Resume of Alejandro Alvarez Pérez, Staff Data Scientist specialised in causal inference and experimentation."
+---
+{% comment %} .html, not .md: kramdown would turn the indented includes into code blocks. {% endcomment %}
+<div class="resume">
+  {% include resume/header.html %}
+  {% include resume/timeline.html items=site.data.resume.experience title="Experience" %}
+  {% include resume/skills.html %}
+  {% include resume/timeline.html items=site.data.resume.education title="Education" %}
+  {% include resume/projects.html %}
+</div>

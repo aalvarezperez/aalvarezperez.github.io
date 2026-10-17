@@ -29,6 +29,10 @@ The CI pipeline (`.github/workflows/pages-deploy.yml`) runs `bundle exec jekyll 
 - **Tabs**: `_tabs/` for sidebar navigation (about, archives, categories, coming soon). Hidden tabs live in `_hidden_tabs/`
 - **Images**: `assets/images/BPAnnnn/` per post. Posts reference them via `media_subpath` in front matter
 - **Data**: `_data/contact.yml` (sidebar links), `_data/share.yml` (post sharing buttons)
+- **Resume**: `_tabs/resume.html` is the Resume tab, built from includes on the stock `page` layout (`.html`, not `.md`, so kramdown does not code-block the indented includes)
+- **Resume data**: `_data/resume.yml` holds all resume content; edit it rather than the templates
+- **Resume includes**: `_includes/resume/` (`header`, `timeline` shared by Experience and Education, `skills`, `projects`). Images in them are written `<img` + newline to dodge Chirpy's refactor-content lightbox wrapping (it splits on `'<img '`)
+- **Resume styles**: `_sass/_resume.scss`, loaded via the `assets/css/jekyll-theme-chirpy.scss` override (a copy of the gem file plus `@use 'resume'`; re-diff it against the gem on Chirpy upgrades)
 - **Plugin**: `_plugins/posts-lastmod-hook.rb` auto-sets `last_modified_at` from git history
 - **Config**: `_config.yml` has Giscus comments, Google Analytics, PWA enabled
 

@@ -1,0 +1,60 @@
+{% comment %}
+  Experience/education timeline. Consecutive entries sharing a `group` key are
+  connected: the first shows its logo, the rest show a dot.
+  Params: items (array), title (section heading).
+
+  Images are written as `<img` + newline on purpose: Chirpy's refactor-content
+  wraps every '<img ' in a lightbox link, which we don't want for logos.
+{% endcomment %}
+{% assign items = include.items %}
+<section class="resume-section">
+  <h2>{{ include.title }}</h2>
+  <div class="resume-timeline">
+    {% for it in items %}
+      {% assign next_it = items[forloop.index] %}
+      {% assign prev_index = forloop.index0 | minus: 1 %}
+      {% assign prev_it = items[prev_index] %}
+      {% assign connected_down = false %}
+      {% assign continued = false %}
+      {% if it.group and next_it.group == it.group %}{% assign connected_down = true %}{% endif %}
+      {% comment %} items[-1] wraps to the last element, hence the forloop.first guard {% endcomment %}
+      {% if it.group and prev_it.group == it.group and forloop.first == false %}{% assign continued = true %}{% endif %}
+
+      {% if it.company %}
+        {% assign heading = it.title %}
+        {% assign org = it.company %}
+        {% assign body = it.description %}
+      {% else %}
+        {% assign heading = it.university %}
+        {% assign org = it.location %}
+        {% assign body = it.major %}
+      {% endif %}
+
+      <div class="resume-entry{% if connected_down %} resume-entry--down{% endif %}{% if continued %} resume-entry--continued{% endif %}">
+        <div class="resume-marker">
+          {% if continued or it.logo == nil %}
+            <span class="resume-dot"></span>
+          {% else %}
+            <img
+              src="{{ it.logo | relative_url }}" alt="" loading="lazy" class="resume-logo">
+          {% endif %}
+        </div>
+        <div class="resume-entry-content">
+          <h3>{{ heading }}</h3>
+          <div class="resume-meta">{{ it.duration }} | {{ org }}</div>
+          {% if body %}
+            {% if body.first %}
+              <ul class="resume-list">
+                {% for line in body %}
+                  <li>{{ line }}</li>
+                {% endfor %}
+              </ul>
+            {% elsif body != empty %}
+              <p>{{ body }}</p>
+            {% endif %}
+          {% endif %}
+        </div>
+      </div>
+    {% endfor %}
+  </div>
+</section>

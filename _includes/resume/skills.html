@@ -1,0 +1,26 @@
+{% comment %}
+  Skill items are either a plain string or {name, description?, url?}.
+{% endcomment %}
+<section class="resume-section">
+  <h2>Skills</h2>
+  {% for skill in site.data.resume.skills %}
+    <div class="resume-skill-group">
+      <h3>{{ skill.title }}</h3>
+      <div class="resume-pills">
+        {% for item in skill.items %}
+          {% if item.name %}
+            {% if item.url %}
+              <a class="resume-pill resume-pill--linked" href="{{ item.url }}" target="_blank" rel="noopener"
+                {% if item.description %} title="{{ item.description | escape }}"{% endif %}>{{ item.name }}</a>
+            {% else %}
+              <span class="resume-pill"
+                {% if item.description %} tabindex="0" title="{{ item.description | escape }}"{% endif %}>{{ item.name }}</span>
+            {% endif %}
+          {% else %}
+            <span class="resume-pill">{{ item }}</span>
+          {% endif %}
+        {% endfor %}
+      </div>
+    </div>
+  {% endfor %}
+</section>

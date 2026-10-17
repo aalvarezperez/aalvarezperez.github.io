@@ -1,7 +1,7 @@
 ---
 # the default layout is 'page'
 icon: fas fa-info-circle
-order: 5
+order: 6
 markdown: kramdown
 ---
 
@@ -16,7 +16,7 @@ You’ll find something valuable here if you’re deep into statistical modeling
 Most of my work happens in the dynamic world of online marketplaces, where user behaviour, product design, experimentation, causal inference, and business strategy all collide in interesting ways.
 From my time at eBay, to working with Adevinta and The Netherlands’ very own Marktplaats, I’ve been tackling a very interesting puzzle: uncovering with what drives these two-sided platforms toward better efficacy, trust, and ultimately, the success of their users and business.
 
-My [resume](https://aalvarezperez.github.io/resume/){:target="_blank" rel="noopener"} has a few highlights of my career; the same from which I draw ideas to write about in this blog.
+My [resume](/resume/) has a few highlights of my career; the same from which I draw ideas to write about in this blog.
 
 
 ### This blog

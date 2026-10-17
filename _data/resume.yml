@@ -1,0 +1,162 @@
+title: Resume
+name: Alejandro Alvarez Pérez
+jobtitle: Staff Data Scientist | Causal Inference and Experimentation
+headline: Staff Data Scientist specialised in causal inference, experimentation, and product analytics. I turn ambiguous questions into analytical frameworks that move decisions. 8+ years across marketplace product analytics and B2B SaaS in European and global markets.
+contact:
+  - icon: fab fa-linkedin
+    text: LinkedIn profile
+    link: https://www.linkedin.com/in/alejandro-alvarez-p%C3%A9rez-a21912b0/
+  - icon: fas fa-square-rss
+    text: Statistical blog
+    link: https://aalvarezperez.github.io/
+  - icon: fab fa-github
+    text: GitHub profile
+    link: https://github.com/aalvarezperez/
+  - icon: fas fa-envelope
+    text: Send email
+    link: mailto:fa.alvarezperez@hotmail.com
+
+education:
+  - university: MSc, Behavioural Data Science
+    duration: Aug 2017 - Jun 2018
+    location: University of Amsterdam
+    logo: /assets/images/resume/Amsterdamuniversitylogo.svg.png
+    group: uva
+    major:
+  - university: BSc, Psychological Research Methods and Statistics
+    duration: Jul 2014 - Dec 2017
+    location: University of Amsterdam
+    logo: /assets/images/resume/Amsterdamuniversitylogo.svg.png
+    group: uva
+    major:
+# Skills accept two shapes:
+#   - "Plain string"                   -> static pill, no tooltip, no link
+#   - name: "Skill name"               -> interactive pill
+#     description: "1-2 line context"  -> shown on hover (optional)
+#     url: "https://..."               -> opens in new tab on click (optional)
+# Hover tooltips are hidden in print; links remain clickable in the PDF.
+skills:
+  - title: Organisational
+    items:
+      - Storytelling with data
+      - Verbal and written communication
+      - Stakeholder management
+  - title: Modelling, Experimentation & Causal Inference
+    items:
+      - DoubleML
+      - Diff-in-Diff
+      - IPSW
+      - name: Regression Discontinuity Design
+        description: "Article I wrote on how RDD works and when to use it."
+        url: https://towardsdatascience.com/regression-discontinuity-design-how-it-works-and-when-to-use-it/
+      - Interrupted time series
+      - Synthetic Control
+      - Regression
+      - Instrumental Variables
+      - A/B Testing
+      - Causal forests
+      - Econometric Methods
+  - title: Machine Learning & AI
+    items:
+      - XGBoost
+      - CatBoost
+      - LightGBM
+      - Random Forests
+      - Unsupervised Learning
+  - title: Programming
+    items:
+      - Python
+      - R
+      - SQL
+      - Object-Oriented Programming
+      - Git
+      - Spark
+      - Google Cloud Platform
+      - AWS
+      - Snowflake
+      - Databricks
+  - title: Languages
+    items:
+      - English (proficient)
+      - Dutch (native)
+      - Spanish (native)
+      - French (advanced)
+
+experience:
+  - title: Senior Data Scientist
+    duration: Aug 2026 - Present
+    company: Booking.com
+    logo: /assets/images/resume/bookingcom.svg
+    description: 
+      - Responsible for the measurement and experimentation strategy for Genius.
+
+  - title: Staff Data Scientist — experimentation and causal inference
+    duration: Sep 2025 - Aug 2026
+    company: Manychat
+    logo: /assets/images/resume/manychat_logo.jpeg
+    description:
+      - 'Owned the experimentation maturity strategy. Led a structured POC with a cross-functional panel to onboard Eppo as the company-wide platform; democratised experimentation across the product organisation (<a href="https://towardsdatascience.com/picking-an-experimentation-platform-a-retrospective/" target="_blank" rel="noopener">article</a>).'
+      - "Informed leadership's global rollout decision on a new pricing model. Built a synthetic experiment pipeline (Abadie &amp; Zhao, 2021) across geo-level holdouts."
+      - "Established an evidence-based product discovery process with a cross-functional squad, scoring rubric, and hypothesis tracker. Redirected the H2 roadmap from feature-building to solving the real adoption barrier."
+      # - "Reshaped 2026 Inbox team OKRs by sizing a $10M ARR opportunity. Multi-state survival models showed consistency; not intensity; halves churn risk."
+      - "Gave the company its first method to estimate long-term experiment impact from short-term data (Athey et al. 2024)."
+
+  - title: Staff Data Scientist — experimentation and causal inference
+    duration: Apr 2023 - Sep 2025
+    company: Adevinta (formerly eBay Classifieds) — Marktplaats
+    logo: /assets/images/resume/adevinta_logo.jpeg
+    description:
+      - Increased transactional services adoption by 8% at stable revenue. Identified differential pricing as the highest-leverage growth lever and designed a multi-cell experimentation programme.
+      - Led global leadership to invest in listing detail page improvements by pinpointing which item page properties drive higher conversion across German and Dutch marketplaces.
+      - Uncovered inefficiencies costing an estimated 14% of transactions through cross-tribal funnel diagnostics spanning 2 product tribes. Mentored senior data scientists in securing stakeholder buy-in.
+      - Founded a recurring internal experimentation conference; cross-market forum where champions shared methods, challenged designs, and raised testing rigour.
+
+  - title: Senior Data Scientist — experimentation and causal inference
+    duration: Sep 2019 - Apr 2023
+    company: eBay (classifieds group)
+    logo: /assets/images/resume/EBay_logo.svg.png
+    group: ebay
+    description:
+      - Built the standard experimentation toolkit across eBay Classifieds markets. Co-developed the internal Python package as core developer and statistician; cut setup by 3h per experiment, runtime by 20%.
+      - Trained 150+ colleagues in structured opportunity finding through an internal Analytics University (trainer score 9+/10). Graduates independently designed experiments that previously required analyst support.
+
+  - title: Data Scientist, Global — product
+    duration: Nov 2018 - Sep 2019
+    company: eBay (classifieds group)
+    logo: /assets/images/resume/EBay_logo.svg.png
+    group: ebay
+    description:
+      - Informed investment decisions on which product categories to specialise by identifying verticalisation opportunities through network modelling and simulation.
+      - Shaped global fraud prevention strategy by quantifying fraud exposure's causal impact on marketplace trust and transaction volume using econometric methods.
+
+  - title: Intern Data Scientist
+    duration: May 2018 - Nov 2018
+    company: eBay (classifieds group)
+    logo: /assets/images/resume/EBay_logo.svg.png
+    group: ebay
+    description:
+      - Validated customer experience metrics (Customer Effort Score, Smile Metric) through quantitative analysis and behavioural deep-dives.
+
+
+projects_and_activities:
+  - title: Causal Inference Blog
+    text: "Tech-blog on causal inference and online experimentation"
+    image: /assets/images/resume/blog_avatar.png
+    link: https://aalvarezperez.github.io
+  - title: Conference Moderator
+    text: "Moderator at CIRCUS experimentation conference in London — by Datadog"
+    image: /assets/images/resume/circus_conference.png
+    link: https://speero.com/circus#moderators
+  - title: Research Publication
+    text: "Paper co-author of experimentation in industry (WIP)"
+    icon: fas fa-file-lines
+
+languages:
+  - name: English
+    proficiency: Work proficiency
+  - name: Dutch
+    proficiency: Native
+  - name: Spanish
+    proficiency: Native
+  - name: French
+    proficiency: Advanced

@@ -1,0 +1,561 @@
+/* Resume tab (_tabs/resume.html). Colours come from Chirpy's theme variables. */
+
+$-marker: 2.2rem;
+$-line: 2px;
+$-divider-color: color-mix(in srgb, var(--text-muted-color) 35%, transparent);
+$-connector-color: color-mix(in srgb, var(--text-muted-color) 60%, transparent);
+
+.resume {
+  h2 {
+    margin-top: 0;
+    margin-bottom: 1.25rem;
+  }
+}
+
+/* Divider lines between the header and each section, as on the old resume */
+.resume-header,
+.resume-section {
+  padding-bottom: 2rem;
+  border-bottom: 1px solid $-divider-color;
+}
+
+.resume-section {
+  padding-top: 2rem;
+
+  &:last-child {
+    border-bottom: 0;
+  }
+
+  h3 {
+    font-size: 1.05rem;
+    margin: 0 0 0.2rem;
+  }
+
+  li {
+    margin: 0.25rem 0;
+  }
+}
+
+/* Chirpy styles `.content ul:not([class])`; the class on our lists opts out */
+.resume .resume-list {
+  padding-inline-start: 1.25rem;
+  margin-bottom: 0;
+}
+
+/* Header */
+
+.resume-header-toprow {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  gap: 1rem;
+}
+
+.resume-name {
+  font-size: 1.6rem;
+  font-weight: 600;
+  color: var(--heading-color);
+  line-height: 1.2;
+}
+
+.resume-jobtitle {
+  color: var(--text-muted-color);
+  margin-top: 0.25rem;
+}
+
+.resume-contact {
+  display: flex;
+  gap: 0.9rem;
+  font-size: 1.25rem;
+  flex-shrink: 0;
+
+  button {
+    color: var(--text-muted-color);
+    border: 0;
+    background: none;
+    padding: 0;
+    line-height: 1;
+
+    &:hover {
+      color: var(--link-color);
+    }
+  }
+}
+
+/* Chirpy's `.content a:not(.img-link)` adds a bottom border (0,2,1) and an
+   `!important` orange hover (0,3,1); these outrank both. */
+.content .resume .resume-contact a {
+  color: var(--text-muted-color);
+  border-bottom: 0;
+  background: none;
+  padding: 0;
+  line-height: 1;
+
+  &:hover {
+    color: var(--link-color) !important;
+    border-bottom: 0;
+  }
+}
+
+.resume-headline {
+  margin: 1rem 0 0;
+}
+
+.resume-print-url {
+  display: none;
+}
+
+/* Timeline */
+
+.resume-entry {
+  display: flex;
+  gap: 1rem;
+  position: relative;
+  padding-bottom: 1.5rem;
+
+  &:last-child {
+    padding-bottom: 0;
+  }
+
+  /* line down to the next entry of the same group */
+  &--down::after {
+    content: '';
+    position: absolute;
+    left: calc(#{$-marker} / 2 - #{$-line} / 2);
+    top: calc(#{$-marker} + 0.3rem);
+    bottom: 0;
+    width: $-line;
+    background-color: $-connector-color;
+  }
+
+  &--continued.resume-entry--down::after {
+    top: 1.25rem;
+  }
+
+  /* short line coming in from the previous entry */
+  &--continued::before {
+    content: '';
+    position: absolute;
+    left: calc(#{$-marker} / 2 - #{$-line} / 2);
+    top: 0;
+    height: 0.25rem;
+    width: $-line;
+    background-color: $-connector-color;
+  }
+}
+
+.resume-marker {
+  flex-shrink: 0;
+  width: $-marker;
+  display: flex;
+  justify-content: center;
+}
+
+.resume-logo {
+  width: $-marker;
+  height: $-marker;
+  object-fit: contain;
+  border-radius: 4px;
+  background: #fff; /* logos have white backgrounds; keep them as chips in dark mode */
+}
+
+.resume-dot {
+  width: 0.6rem;
+  height: 0.6rem;
+  border-radius: 50%;
+  background-color: var(--text-muted-color);
+  margin-top: 0.45rem;
+}
+
+.resume-entry-content {
+  flex: 1;
+  min-width: 0;
+}
+
+.resume-meta {
+  font-size: 0.9rem;
+  color: var(--text-muted-color);
+  margin-bottom: 0.4rem;
+}
+
+/* Skills */
+
+.resume-skill-group + .resume-skill-group {
+  margin-top: 1.25rem;
+}
+
+.resume-skill-group h3 {
+  margin-bottom: 0.6rem;
+}
+
+.resume-pills {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.4rem;
+}
+
+.resume .resume-pill {
+  display: inline-block;
+  font-size: 0.85rem;
+  line-height: 1.4;
+  padding: 0.25rem 0.7rem;
+  border: 1px solid var(--main-border-color);
+  border-radius: 1rem;
+  color: var(--text-color);
+  text-decoration: none;
+}
+
+.content .resume a.resume-pill {
+  border-bottom: 1px solid var(--main-border-color);
+  transition: border-color 0.15s;
+
+  &:hover,
+  &:focus-visible {
+    color: var(--text-color) !important;
+    border-color: var(--text-muted-color);
+  }
+}
+
+/* Projects */
+
+.resume-cards {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 1rem;
+
+  @media (max-width: 767.98px) {
+    grid-template-columns: 1fr;
+  }
+}
+
+.resume .resume-card {
+  flex-direction: row;
+  gap: 1rem;
+  padding: 1rem 1.2rem;
+  background: var(--card-bg);
+  box-shadow: var(--card-shadow);
+  border: 0;
+  color: inherit;
+
+  h3 {
+    font-size: 0.95rem;
+  }
+
+  p {
+    font-size: 0.85rem;
+    color: var(--text-muted-color);
+    margin: 0;
+  }
+
+}
+
+.content .resume a.resume-card {
+  border-bottom: 0;
+
+  &:hover {
+    color: inherit !important;
+    background: var(--card-hover-bg);
+    border-bottom: 0;
+    text-decoration: none;
+  }
+}
+
+.resume-card-thumb,
+.resume-card-icon {
+  flex-shrink: 0;
+  width: 4rem;
+  height: 4rem;
+  border-radius: 0.4rem;
+}
+
+.resume-card-thumb {
+  object-fit: cover;
+}
+
+.resume-card-icon {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 1.4rem;
+  color: var(--text-muted-color);
+  background: var(--main-border-color);
+}
+
+/* Resume page: drop the right panel and centre the column, the same way
+   Chirpy itself lays out pages below xl (_panel.scss / _base.scss). */
+#main-wrapper:has(.resume) {
+  #panel-wrapper {
+    display: none;
+  }
+
+  > .container > .row {
+    justify-content: center !important;
+  }
+}
+
+/* Print: the PDF button prints just the resume on A4. Ported from the old
+   resume repo's _print.scss: the root drops to 12px so every rem-based size
+   (Chirpy's and ours) shrinks together, then each block gets compact spacing. */
+
+$-print-text: #495057;
+$-print-muted: #6c757d;
+$-print-line: #e0dcd7;
+$-print-pill-border: #d5d0cb;
+$-print-marker: 1.8rem;
+
+@media print {
+  @page {
+    size: A4;
+    margin: 10mm 12mm;
+  }
+
+  .resume-print {
+    display: none !important;
+  }
+
+  /* Page chrome is hidden only on pages that contain the resume, so printing
+     any other page is unaffected. */
+  html:has(.resume) {
+    font-size: 12px !important;
+
+    body {
+      background: #fff !important;
+      -webkit-print-color-adjust: exact;
+      print-color-adjust: exact;
+    }
+
+    #sidebar,
+    #topbar-wrapper,
+    #panel-wrapper,
+    #tail-wrapper,
+    #back-to-top,
+    #mask,
+    .dynamic-title {
+      display: none !important;
+    }
+
+    /* Chirpy's wrappers keep their gutters in print; the page margin is enough */
+    #main-wrapper,
+    #main-wrapper > .container,
+    #main-wrapper > .container > .row,
+    main,
+    main > article,
+    main .content {
+      flex: 0 0 100% !important;
+      max-width: 100% !important;
+      min-height: 0 !important;
+      margin: 0 !important;
+      padding: 0 !important;
+    }
+  }
+
+  /* Literal greys on purpose: paper is white even when printing from dark mode */
+  .content .resume {
+    font-size: 1rem;
+    line-height: 1.4;
+    color: $-print-text;
+
+    h2,
+    h3,
+    p,
+    li,
+    a,
+    .resume-name {
+      color: $-print-text !important;
+    }
+
+    .resume-jobtitle,
+    .resume-meta,
+    .resume-print-url,
+    .resume-print-url a,
+    .resume-contact a,
+    .resume-card p,
+    .resume-card-icon {
+      color: $-print-muted !important;
+    }
+
+    /* Header */
+    .resume-header {
+      padding: 0.8rem 0 0.6rem;
+      border-bottom-color: $-print-muted;
+    }
+
+    .resume-name {
+      font-size: 1.8rem;
+    }
+
+    .resume-jobtitle {
+      font-size: 1rem;
+      margin-top: 0.3rem;
+    }
+
+    .resume-headline {
+      font-size: 0.9rem;
+      line-height: 1.4;
+      margin-top: 0.3rem;
+    }
+
+    .resume-contact {
+      gap: 0.6rem;
+      font-size: 1rem;
+      padding-top: 0.3rem;
+    }
+
+    .resume-print-url {
+      display: block;
+      font-size: 0.8rem;
+      margin-top: 0.3rem;
+
+      a {
+        text-decoration: underline;
+        border-bottom: 0;
+      }
+
+      i {
+        font-size: 0.7rem;
+        margin-right: 0.3rem;
+      }
+    }
+
+    /* Sections */
+    .resume-section {
+      padding: 0.6rem 0;
+      border-bottom-color: $-print-muted;
+    }
+
+    h2 {
+      font-size: 1.15rem;
+      margin: 0 0 0.4rem;
+      break-after: avoid;
+    }
+
+    h3 {
+      font-size: 0.95rem;
+      margin-bottom: 0.1rem;
+    }
+
+    .resume-meta {
+      font-size: 0.8rem;
+      margin-bottom: 0.2rem;
+    }
+
+    .resume-entry-content p,
+    .resume-list {
+      font-size: 0.85rem;
+      line-height: 1.4;
+    }
+
+    .resume-list {
+      margin: 0.1rem 0;
+      padding-inline-start: 1.2rem;
+    }
+
+    li {
+      margin: 0 0 0.05rem;
+    }
+
+    /* Timeline, re-centred for the smaller marker */
+    .resume-entry {
+      gap: 0.8rem;
+      padding-bottom: 0.4rem;
+      break-inside: avoid;
+
+      &:last-child {
+        padding-bottom: 0;
+      }
+    }
+
+    .resume-marker {
+      width: $-print-marker;
+    }
+
+    .resume-logo {
+      width: $-print-marker;
+      height: $-print-marker;
+      border-radius: 3px;
+    }
+
+    .resume-dot {
+      width: 0.5rem;
+      height: 0.5rem;
+      margin-top: 0.35rem;
+      background-color: #b0aba5;
+    }
+
+    .resume-entry--down::after,
+    .resume-entry--continued::before {
+      left: calc(#{$-print-marker} / 2 - 1px);
+      background-color: $-print-line;
+    }
+
+    .resume-entry--down::after {
+      top: 2.1rem;
+    }
+
+    .resume-entry--continued.resume-entry--down::after {
+      top: 1rem;
+    }
+
+    /* Skills */
+    .resume-skill-group + .resume-skill-group {
+      margin-top: 0.3rem;
+    }
+
+    .resume-skill-group h3 {
+      font-size: 0.85rem;
+      margin-bottom: 0.05rem;
+    }
+
+    .resume-pills {
+      gap: 0.25rem;
+    }
+
+    .resume-pill,
+    a.resume-pill {
+      font-size: 0.75rem;
+      line-height: 1.35;
+      padding: 0.15rem 0.5rem;
+      color: $-print-text !important;
+      border: 1px solid $-print-pill-border;
+    }
+
+    /* Cards */
+    .resume-cards {
+      gap: 0.6rem;
+    }
+
+    .resume-card,
+    a.resume-card {
+      gap: 0.8rem;
+      padding: 0.6rem 0.8rem;
+      background: #fff !important;
+      border: 1px solid $-print-line;
+      box-shadow: none;
+      break-inside: avoid;
+
+      h3 {
+        font-size: 0.8rem;
+      }
+
+      p {
+        font-size: 0.7rem;
+      }
+    }
+
+    .resume-card-thumb,
+    .resume-card-icon {
+      width: 3rem;
+      height: 3rem;
+      border-radius: 3px;
+    }
+
+    .resume-card-icon {
+      font-size: 0.9rem;
+      background: rgba(0, 0, 0, 0.035);
+    }
+
+    .resume-skill-group {
+      break-inside: avoid;
+    }
+  }
+}

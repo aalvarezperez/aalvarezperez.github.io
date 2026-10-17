@@ -1,0 +1,26 @@
+{% assign r = site.data.resume %}
+<header class="resume-header">
+  <div class="resume-header-toprow">
+    <div>
+      <div class="resume-name">{{ r.name }}</div>
+      <div class="resume-jobtitle">{{ r.jobtitle }}</div>
+    </div>
+    <div class="resume-contact">
+      {% for item in r.contact %}
+        {% if item.link %}
+          <a href="{{ item.link }}" aria-label="{{ item.text }}" title="{{ item.text }}">
+            <i class="{{ item.icon }}" aria-hidden="true"></i>
+          </a>
+        {% endif %}
+      {% endfor %}
+      <button type="button" class="resume-print" onclick="window.print()" aria-label="Download PDF" title="Download PDF">
+        <i class="fas fa-file-pdf" aria-hidden="true"></i>
+      </button>
+    </div>
+  </div>
+  <p class="resume-headline">{{ r.headline }}</p>
+  <div class="resume-print-url">
+    <i class="fas fa-link" aria-hidden="true"></i>
+    <a href="{{ page.url | absolute_url }}">{{ page.url | absolute_url | remove: 'https://' }}</a>
+  </div>
+</header>

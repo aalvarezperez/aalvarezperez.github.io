@@ -1,0 +1,30 @@
+{% comment %}
+  `<img` + newline avoids Chirpy's lightbox wrapping (see timeline.html).
+{% endcomment %}
+<section class="resume-section">
+  <h2>Projects and Activities</h2>
+  <div class="resume-cards">
+    {% for item in site.data.resume.projects_and_activities %}
+      {% if item.link %}
+        <a href="{{ item.link }}" target="_blank" rel="noopener" class="card resume-card resume-card--link">
+      {% else %}
+        <div class="card resume-card">
+      {% endif %}
+        {% if item.image %}
+          <img
+            src="{{ item.image | relative_url }}" alt="" loading="lazy" class="resume-card-thumb">
+        {% else %}
+          <div class="resume-card-icon"><i class="{{ item.icon }}" aria-hidden="true"></i></div>
+        {% endif %}
+        <div>
+          <h3>{{ item.title }}</h3>
+          <p>{{ item.text }}</p>
+        </div>
+      {% if item.link %}
+        </a>
+      {% else %}
+        </div>
+      {% endif %}
+    {% endfor %}
+  </div>
+</section>

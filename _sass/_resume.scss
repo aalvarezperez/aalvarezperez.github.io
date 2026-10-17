@@ -205,14 +205,24 @@ $-connector-color: color-mix(in srgb, var(--text-muted-color) 60%, transparent);
   text-decoration: none;
 }
 
+/* Linked pills read as links at rest, not only on hover: link colour, a
+   tinted border and an external-link icon. */
 .content .resume a.resume-pill {
-  border-bottom: 1px solid var(--main-border-color);
-  transition: border-color 0.15s;
+  color: var(--link-color);
+  border: 1px solid color-mix(in srgb, var(--link-color) 45%, transparent);
+  transition: background-color 0.15s, border-color 0.15s;
+
+  i {
+    font-size: 0.7em;
+    margin-left: 0.4em;
+    vertical-align: 0.1em;
+  }
 
   &:hover,
   &:focus-visible {
-    color: var(--text-color) !important;
-    border-color: var(--text-muted-color);
+    color: var(--link-color) !important;
+    border-color: var(--link-color);
+    background-color: color-mix(in srgb, var(--link-color) 10%, transparent);
   }
 }
 

@@ -1,5 +1,7 @@
 {% comment %}
   Skill items are either a plain string or {name, description?, url?}.
+  Linked pills take the link colour and an external-link icon; the description
+  is the link's hover title.
 {% endcomment %}
 <section class="resume-section">
   <h2>Skills</h2>
@@ -11,10 +13,9 @@
           {% if item.name %}
             {% if item.url %}
               <a class="resume-pill resume-pill--linked" href="{{ item.url }}" target="_blank" rel="noopener"
-                {% if item.description %} title="{{ item.description | escape }}"{% endif %}>{{ item.name }}</a>
+                {% if item.description %} title="{{ item.description | escape }}"{% endif %}>{{ item.name }}<i class="fas fa-arrow-up-right-from-square" aria-hidden="true"></i></a>
             {% else %}
-              <span class="resume-pill"
-                {% if item.description %} tabindex="0" title="{{ item.description | escape }}"{% endif %}>{{ item.name }}</span>
+              <span class="resume-pill">{{ item.name }}</span>
             {% endif %}
           {% else %}
             <span class="resume-pill">{{ item }}</span>

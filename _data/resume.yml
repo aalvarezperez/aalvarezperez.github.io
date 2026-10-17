@@ -30,11 +30,12 @@ education:
     group: uva
     major:
 # Skills accept two shapes:
-#   - "Plain string"                   -> static pill, no tooltip, no link
-#   - name: "Skill name"               -> interactive pill
-#     description: "1-2 line context"  -> shown on hover (optional)
-#     url: "https://..."               -> opens in new tab on click (optional)
-# Hover tooltips are hidden in print; links remain clickable in the PDF.
+#   - "Plain string"                   -> plain pill
+#   - name: "Skill name"
+#     url: "https://..."               -> link-coloured pill with an external-link
+#                                         icon, opens in a new tab
+#     description: "1 line context"    -> hover title on the link (optional)
+# Links remain clickable in the PDF.
 skills:
   - title: Organisational
     items:
@@ -58,13 +59,10 @@ skills:
       - Econometric Methods
   - title: Machine Learning & AI
     items:
-      - name: Gradient boosting
-        description: "XGBoost, LightGBM, CatBoost"
-      - name: Bagging and random forests
-      - name: Clustering
-        description: "k-means, hierarchical, Gaussian mixtures"
-      - name: Dimensionality reduction
-        description: "PCA, UMAP"
+      - Gradient boosting
+      - Random forests
+      - Clustering
+      - Dimensionality reduction
   - title: Programming
     items:
       - Python

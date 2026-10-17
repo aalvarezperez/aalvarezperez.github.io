@@ -58,11 +58,13 @@ skills:
       - Econometric Methods
   - title: Machine Learning & AI
     items:
-      - XGBoost
-      - CatBoost
-      - LightGBM
-      - Random Forests
-      - Unsupervised Learning
+      - name: Gradient boosting
+        description: "XGBoost, LightGBM, CatBoost"
+      - name: Bagging and random forests
+      - name: Clustering
+        description: "k-means, hierarchical, Gaussian mixtures"
+      - name: Dimensionality reduction
+        description: "PCA, UMAP"
   - title: Programming
     items:
       - Python

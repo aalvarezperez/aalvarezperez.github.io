@@ -59,7 +59,10 @@ comments:
 pwa:
   enabled: true
   cache:
-    enabled: true
+    # Off: with it on, every build stamps a new cache version, so the
+    # "A new version of content is available" popup fires after each deploy
+    # (and each local rebuild) whether or not the page you are on changed.
+    enabled: false
 
 paginate: 10
 baseurl: ""
